@@ -5,14 +5,26 @@ configDotenv();
 
 const { AUTH_EMAIL, AUTH_PASS } = process.env;
 
-const transport = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: AUTH_EMAIL,
-    pass: AUTH_PASS,
-  },
-});
+// const transport = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: AUTH_EMAIL,
+//     pass: AUTH_PASS,
+//   },
+// });
 
+const transport = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // 587 порт ашиглаж байгаа үед заавал false байна
+  auth: {
+    user: process.env.AUTH_EMAIL,
+    pass: process.env.AUTH_PASS,
+  },
+  tls: {
+    rejectUnauthorized: false // Сервер дээрх холболтыг таслахаас сэргийлнэ
+  }
+});
 export const ResetPasswordVerificationEmail = async (
   reciever: string,
   otpCode: string,
