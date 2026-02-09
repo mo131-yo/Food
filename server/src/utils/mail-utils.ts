@@ -17,8 +17,6 @@ const transport = nodemailer.createTransport({
   greetingTimeout: 10000,
   socketTimeout: 10000,
 });
- 
-
 
     export const verifyUserEmail = async (receiver: string, verifiLink: string) => {
         await transport.sendMail({
