@@ -36,7 +36,7 @@ configDotenv();
 const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM_EMAIL = "onboarding@resend.dev"; 
 
-export const sendSignupVerification = async (receiver: string, verifyLink: string) => {
+export const verifyUserEmail = async (receiver: string, verifyLink: string) => {
   try {
     const { data, error } = await resend.emails.send({
       from: FROM_EMAIL,
