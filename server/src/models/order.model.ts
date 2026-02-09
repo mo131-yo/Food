@@ -1,6 +1,6 @@
 import { models, model, Schema, Model } from "mongoose";
 
-type Card = {
+type Order = {
   title: string;
   price: number;
   product: string;
@@ -8,7 +8,7 @@ type Card = {
   description: string;
 };
 
-const CardSchema = new Schema<Card>(
+const OrderSchema = new Schema<Order>(
   {
     title: { type: String, required: true },
     product: [{ type: String, required: true }],
@@ -19,4 +19,4 @@ const CardSchema = new Schema<Card>(
   { timestamps: true },
 );
 
-export const CardModel: Model<Card> =models["Cards"] || model("Cards", CardSchema);
+export const OrderModel: Model<Order> =models["Order"] || model("Order", OrderSchema);

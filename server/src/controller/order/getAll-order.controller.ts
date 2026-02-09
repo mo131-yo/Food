@@ -1,7 +1,7 @@
 import { OrderModel } from "../../schema/order.schema";
 import { Request, Response } from "express";
 
-export const getFoodOrder = async (req: any, res: Response) => {
+export const getAllFoodOrder = async (req: any, res: Response) => {
     try {
         const userId = req.user._id;
 

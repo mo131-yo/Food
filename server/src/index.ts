@@ -2,7 +2,7 @@ import cors from "cors";
 import { configDotenv } from "dotenv";
 import express, { Application, Request, Response } from "express";
 import connectToMongoDB from "./mongoDb";
-import { foodCardRouter, foodCategoryRouter, foodRouter, userRouter } from "./router";
+import { foodCategoryRouter, foodRouter, userRouter } from "./router";
 import { UserModel } from "./schema/user.schema";
 import bcrypt from "bcrypt";
 import { ResetPasswordVerificationEmail } from "./utils/reset-password";
@@ -40,30 +40,8 @@ app.get("/get-users", async (req: Request, res: Response) => {
 
 app.use('/users', userRouter);
 app.use("/foods", foodRouter);
-app.use("/foods-card", foodCardRouter);
 app.use("/foods-category", foodCategoryRouter);
 app.use("/foods-order", orderRouter);
-
-app.post("/reset-password", async (req, res) => {
-    const { email } = req.body;
-    const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
-    
-    const user = await UserModel.findOne({ email });
-    if (!user) return res.status(404).json({ message: "User oldsongui" });
-    
-    user.resetPasswordOtp = otpCode;
-    user.resetPasswordExpires = new Date(Date.now() + 10 * 60 * 1000);
-    await user.save();
-    
-    const result = await ResetPasswordVerificationEmail(email, otpCode);
-    
-    if (result.success) {
-        res.status(200).json({ message: "mail amjilttai ilgeelee" });
-    } else {
-        res.status(500).json({ message: "Aldaa garlaa", error: result.error });
-    }
-});
-
 
 
 app.post("/verify-otp", async (req, res) => {
@@ -71,24 +49,27 @@ app.post("/verify-otp", async (req, res) => {
     const user = await UserModel.findOne({ email });
     
     if (!user) {
-        console.log("Хэрэглэгч олдсонгүй");
-        return res.status(400).json({ message: "Код буруу" });
+        return res.status(400).json({ message: "Хэрэглэгч олдсонгүй" });
     }
     
-    console.log("Оруулсан код:", otpCode);
-    console.log("Баазад байгаа код:", user.resetPasswordOtp);
-    console.log("Одоогийн цаг:", new Date());
-    console.log("Дуусах цаг:", user.resetPasswordExpires);
+    // Төрөл болон илүү зайг арилгаж харьцуулах
+    const dbOtp = String(user.resetPasswordOtp).trim();
+    const inputOtp = String(otpCode).trim();
     
-    const isCodeWrong = user.resetPasswordOtp !== otpCode;
-    const isExpired = new Date() > user.resetPasswordExpires!;
+    const isCodeWrong = dbOtp !== inputOtp;
+    const isExpired = new Date() > new Date(user.resetPasswordExpires!); // Date объект болгох
     
     if (isCodeWrong || isExpired) {
         return res.status(400).json({ 
-            message: isCodeWrong ? "Код буруу байна" : "Хугацаа дууссан байна" 
+            message: isCodeWrong ? "Код буруу байна" : "Кодын хугацаа дууссан байна" 
         });
     }
-    
+
+    // Амжилттай болсон бол OTP-г нь устгах эсвэл баталгаажуулсан төлөвт оруулах
+    // user.resetPasswordOtp = undefined;
+    // await user.save();
+
+    res.status(200).json({ message: "Код амжилттай баталгаажлаа" });
 });
 
 

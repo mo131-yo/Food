@@ -30,8 +30,8 @@ const UserSchema = new Schema<User>({
     otpCode: { type: String },
     otpExpires: { type: Date },
     phoneNumber: {type: String},
-    resetPasswordOtp: {type: String},
-    resetPasswordExpires: {type: Date},
+    resetPasswordOtp: {type: String, required: false},
+    resetPasswordExpires: {type: Date, required: false},
     userName: { type:String, unique:true},
 }, 
 { timestamps: true });

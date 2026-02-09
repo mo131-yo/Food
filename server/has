@@ -1,0 +1,51 @@
+1. Authentication Controller (Хэрэглэгчийн бүртгэл, нэвтрэх)
+Хэрэглэгчийн аюулгүй байдал, JWT токен болон нууц үг сэргээх функцийг хариуцна.
+
+POST /auth/sign-up: Шинэ хэрэглэгч бүртгэх (Нууц үг hash-лах).
+
+POST /auth/sign-in: Нэвтрэх (JWT токен үүсгэх).
+
+GET /auth/verify-email: Имэйл баталгаажуулах.
+
+POST /auth/reset-password-request: Нууц үг сэргээх хүсэлт илгээх (Имэйл рүү холбоос явуулах).
+
+POST /auth/reset-password: Шинэ нууц үг тохируулах.
+
+GET /auth/refresh: Токен шинэчлэх.
+
+2. Food Controller (Хоолны цэс)
+Хоолны мэдээллийг харах (бүх хэрэглэгч) болон удирдах (зөвхөн Админ) функцууд.
+
+GET /food: Бүх хоолны жагсаалт харах (Нэвтрэх шаардлагагүй).
+
+GET /food/:foodId: Тухайн нэг хоолны дэлгэрэнгүй мэдээлэл.
+
+POST /food/create-food: Шинэ хоол нэмэх (Admin).
+
+PATCH /food/:foodId: Хоолны мэдээлэл шинэчлэх (Admin).
+
+DELETE /food/:foodId: Хоол устгах (Admin).
+
+3. Food Category Controller (Хоолны ангилал)
+Цэсийг ангилах хэсэг.
+
+GET /food-category: Ангиллын жагсаалт.
+
+POST /food-category: Шинэ ангилал үүсгэх (Admin).
+
+PATCH /food-category/:id: Ангилал засах (Admin).
+
+DELETE /food-category/:id: Ангилал устгах (Admin).
+
+4. Food Order Controller (Захиалга, сагс, хяналт)
+Захиалга хийх болон төлөв өөрчлөх хэсэг.
+
+POST /food-order: Шинэ захиалга үүсгэх (Сагсан дахь хоолнууд, хүргэлтийн хаяг, нийт үнэ).
+
+GET /food-order: Бүх захиалгын жагсаалт (Admin).
+
+GET /food-order/:userId: Тухайн хэрэглэгчийн өөрийн захиалгын түүх.
+
+PATCH /food-order/:orderId: Захиалгын төлөв өөрчлөх (Нэг бүрчлэн).
+
+PATCH /food-order/bulk-update: Захиалгын төлөвийг олноор нь өөрчлөх (Таны хүссэн "олноор нь төлөв өөрчлөх" API).

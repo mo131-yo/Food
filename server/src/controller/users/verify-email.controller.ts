@@ -1,24 +1,8 @@
-// import {Request, Response} from "express";
-// import { verify } from "jsonwebtoken";
-
-
-// export const verifyUser = async (req: Request, res: Response) => {
-//     try {
-//         const token  = req.query.token as string
-
-//         const decoded = verify(token, "hello")
-//         console.log(decoded);
-        
-//     } catch (error: any) {
-//         res.status(400).json({ message: "aldaa", error: error.message });
-//     }
-// }
-
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { UserModel } from "../../schema/user.schema";
 
-export const verifyUser = async (req: Request, res: Response) => {
+export const verifyEmail = async (req: Request, res: Response) => {
     try {
         const { token } = req.query; 
 
