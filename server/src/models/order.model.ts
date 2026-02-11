@@ -1,22 +1,17 @@
-import { models, model, Schema, Model } from "mongoose";
+import mongoose, { models, model, Schema } from "mongoose";
 
-type Order = {
-  title: string;
-  price: number;
-  product: string;
-  foodImage: string;
-  description: string;
-};
+const OrderSchema = new Schema({
+    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    foods: [{ 
+        food: { type: Schema.Types.ObjectId, ref: "Food", required: true }
+    }],
+    totalPrice: { type: Number, required: true },
+    address: { type: String, required: true },
+    status: { 
+        type: String, 
+        enum: ["Pending", "Processing", "Delivered", "Cancelled"], 
+        default: "Pending" 
+    },
+}, { timestamps: true });
 
-const OrderSchema = new Schema<Order>(
-  {
-    title: { type: String, required: true },
-    product: [{ type: String, required: true }],
-    price: { type: Number, required: true },
-    foodImage: { type: String},
-    description: { type: String, required: true },
-  },
-  { timestamps: true },
-);
-
-export const OrderModel: Model<Order> =models["Order"] || model("Order", OrderSchema);
+export const OrderModel = models["Order"] || model("Order", OrderSchema);

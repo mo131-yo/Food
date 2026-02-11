@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
-import { FoodCategoryModel } from "../../schema/Category.schema"; // Моделио зөв импортлох
+import { FoodCategoryModel } from "../../schema/Category.schema";
 
 export const getFoodCategoryById = async (req: Request, res: Response) => {
     try {
         const { categoryId } = req.params; 
 
-        // 1. UserModel биш FoodCategoryModel-оос хайна
         const foodCategory = await (FoodCategoryModel as any).findById(categoryId); 
 
         if (!foodCategory) {

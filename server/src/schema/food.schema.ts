@@ -18,6 +18,7 @@
 
    import mongoose, {models, Schema} from "mongoose";  
    
+   
      export const FoodSchema = new Schema({
       foodName: { type: String, required: true },
       foodPrice: { type: Number, required: true },

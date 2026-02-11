@@ -1,16 +1,13 @@
-import { models, model, Schema, ObjectId} from "mongoose";
+import mongoose, { models, model, Schema } from "mongoose";
 
-type FoodCategory = {
-    id?: ObjectId;
+export interface IFoodCategory {
     categoryName: string;
-    description: string;
+    description?: string;
 }
 
-const FoodCategorySchema = new Schema<FoodCategory>({
-    id: { type: Schema.Types.ObjectId, required: false },
-    categoryName: { type: String, required: true, unique: true},
-    description: { type: String},
-},
-{timestamps: true},
-)
-export const FoodCategoryModel = models["FoodCategory"] || model("FoodCategory", FoodCategorySchema);
+const FoodCategorySchema = new Schema<IFoodCategory>({
+    categoryName: { type: String, required: true },
+    description: { type: String },
+}, { timestamps: true });
+
+export const FoodCategoryModel = models["FoodCategory"] || model<IFoodCategory>("FoodCategory", FoodCategorySchema);

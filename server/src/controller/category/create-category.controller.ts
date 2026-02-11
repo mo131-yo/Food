@@ -5,28 +5,16 @@ export const createFoodCategory = async (req: Request, res: Response) => {
     try {
         const { categoryName, description } = req.body;
 
-        // 1. Ийм нэртэй категори аль хэдийн байгаа эсэхийг шалгах
-        const existingCategory = await FoodCategoryModel.findOne( categoryName );
+        const existingCategory = await FoodCategoryModel.findOne({ categoryName } as any) ;
+        
         if (existingCategory) {
-            return res.status(400).json({ message: "Энэ категори аль хэдийн бүртгэгдсэн байна." });
+            return res.status(400).json({ message: "Ene Category burtgelttei bna" });
         }
 
-        // 2. Шинэ категори үүсгэх
-        const newCategory = await FoodCategoryModel.create({ 
-            categoryName, 
-            description 
-        });
+        const newCategory = await FoodCategoryModel.create({ categoryName, description });
 
-        res.status(201).json({ 
-            message: "Category amjilttai nemegdlee", 
-            data: newCategory 
-        });
-
+        return res.status(201).json({ data: newCategory });
     } catch (error: any) {
-        console.error("ALDAA:", error.message);
-        res.status(500).json({ 
-            message: "Aldaa garlaa", 
-            error: error.message 
-        });
+        return res.status(500).json({ error: error.message });
     }
-}
+};

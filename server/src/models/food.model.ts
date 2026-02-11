@@ -1,7 +1,7 @@
 import mongoose, { models, Schema } from "mongoose";
 
 
-type Food = {
+export interface Food  {
   _id: String;
   foodName: string;
   foodPrice: number;

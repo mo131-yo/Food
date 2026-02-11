@@ -8,7 +8,7 @@ import { getAllFood } from "../controller/foods/get-all-food.controller";
 
 export const foodRouter = Router();
 
-foodRouter.post("/create-food-item", authorization , authentication ,createFoodItem);
+foodRouter.post("/create-food-item", createFoodItem);
 
 foodRouter.delete("/delete-food/:foodId", deleteFood)
 foodRouter.patch("/update-food/:foodId", updateFood)
