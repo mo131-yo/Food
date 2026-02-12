@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
+dotenv.config();
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
@@ -13,8 +15,6 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
   
   try {
     const secret = process.env.JWT_SECRET as string;
-    console.log("Header-ээс ирсэн Token:", token);
-  console.log("Ашиглаж буй Secret:", secret);
     
     const decoded = jwt.verify(token as string, secret);
     (req as any).user = decoded; 

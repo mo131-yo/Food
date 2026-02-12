@@ -4,14 +4,14 @@ import { OrderModel } from "../../models";
 export const createOrder = async (req: any, res: Response) => {
     try {
         const { foods, totalPrice, address } = req.body;
-        const userId = req.user._id;
+        const userId = req.user.userId;
 
         const newOrder = await OrderModel.create({
             user: userId,
             foods: foods,
             totalPrice: totalPrice,
             address: address,
-            status: "Pending" 
+            status: "Pending"
         });
 
         res.status(201).json({

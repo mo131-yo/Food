@@ -18,7 +18,7 @@ export const signInController = async (req: Request, res: Response) => {
         }
 
         const accessToken = jwt.sign(
-            { userId: user._id, email: user.email }, 
+            { userId: user._id, email: user.email, role: user.role},
             process.env.JWT_SECRET as string, 
             { expiresIn: "15m" } 
         );
