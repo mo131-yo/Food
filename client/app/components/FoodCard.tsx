@@ -2,7 +2,7 @@ interface FoodProps {
   foods: {
     name: string;
     price: number;
-    image: string; // Зургийн URL
+    image: string; 
     ingredients: string;
   };
 }
@@ -35,6 +35,7 @@ const FoodCard = ({ foods }: FoodProps) => {
       }}>
         Сагслах
       </button>
+      
     </div>
   );
 };

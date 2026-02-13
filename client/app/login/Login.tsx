@@ -12,17 +12,15 @@ const LoginPage = () => {
         try {
             const response = await api.post('/users/sign-in', { email, password });
             
-            // 1. Токеноо хадгалах
             localStorage.setItem('accessToken', response.data.accessToken);
             localStorage.setItem('user', JSON.stringify(response.data.user));
 
-            alert("Амжилттай нэвтэрлээ!");
+            alert("Amjilttai nevterlee");
             
-            // 2. Нэвтэрсний дараа нүүр хуудас руу шилжүүлэх
             navigate('/');
         } catch (error: any) {
             console.error(error);
-            alert(error.response?.data?.message || "Имэйл эсвэл нууц үг буруу байна");
+            alert(error.response?.data?.message || "Email esvel nuuts ug buruu bn");
         }
     };
 
@@ -32,20 +30,20 @@ const LoginPage = () => {
                 <h2>Нэвтрэх</h2>
                 <input 
                     type="email" 
-                    placeholder="Имэйл" 
+                    placeholder="Email" 
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)} 
                     required 
                 />
                 <input 
                     type="password" 
-                    placeholder="Нууц үг" 
+                    placeholder="Password" 
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)} 
                     required 
                 />
                 <button type="submit" style={{ padding: '10px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-                    Нэвтрэх
+                    Login in
                 </button>
             </form>
         </div>

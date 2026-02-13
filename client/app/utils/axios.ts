@@ -16,4 +16,8 @@ api.interceptors.request.use((config) => {
 });
 
 export default api;
-// npm install react-router-dom
+
+
+// export const api = axios.create({
+//   baseURL: 'https://food-ahv2.onrender.com',
+// });
