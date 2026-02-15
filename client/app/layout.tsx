@@ -76,15 +76,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Header үргэлж дээд талд харагдана */}
           <Header />
-          
-          {/* page.tsx доторх контентууд энд харагдана */}
           <main className="min-h-screen">
             {children}
           </main>
-          
-          {/* Footer үргэлж доод талд харагдана */}
           <Footer />
         </ThemeProvider>
       </body>

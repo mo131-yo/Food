@@ -67,7 +67,6 @@ export default function HomePage() {
     const getFoods = async () => {
       try {
         const response = await api.get('/foods'); 
-        // ЧУХАЛ: Консол дээр ирж буй өгөгдлийг хар
         console.log("Бүх хоол:", response.data.data); 
         
         if (response.data && response.data.data) {
@@ -86,7 +85,6 @@ export default function HomePage() {
 
   return (
     <div className='p-5 bg-black min-h-screen'>
-      {/* 1. Энд foods-оо дамжуулж байна */}
       <Appetizers foods={foods} />
 
       <h2 className='text-white text-2xl mb-4 mt-10'>All Menu</h2>

@@ -94,7 +94,6 @@
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {foods.map((item) => {
-          // Баазаас ирж буй Public ID-г URL болгон хувиргах
           const imageUrl = getCloudinaryUrl(item.foodImage);
 
           return (
