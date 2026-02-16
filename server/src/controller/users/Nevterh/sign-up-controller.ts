@@ -6,7 +6,7 @@ import { verifyUserEmail } from "../../../utils/mail-utils";
 
 export const signUpController = async (req: Request, res: Response) => {
     try {
-        const { name, email, password } = req.body;
+        const { email, password } = req.body;
 
         const User = await UserModel.findOne({ email });
         if (User) {
@@ -15,7 +15,7 @@ export const signUpController = async (req: Request, res: Response) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const newUser = await UserModel.create({name, email, password: hashedPassword});
+        const newUser = await UserModel.create({email, password: hashedPassword});
 
         const token = jwt.sign({ _id: newUser._id }, process.env.JWT_SECRET || "hello", { expiresIn: "1d" } );
 

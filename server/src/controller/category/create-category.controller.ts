@@ -5,7 +5,7 @@ export const createFoodCategory = async (req: Request, res: Response) => {
     try {
         const { categoryName, description } = req.body;
 
-        const existingCategory = await FoodCategoryModel.findOne({ categoryName } as any) ;
+        const existingCategory = await FoodCategoryModel.findOne({ categoryName }) ;
         
         if (existingCategory) {
             return res.status(400).json({ message: "Ene Category burtgelttei bna" });

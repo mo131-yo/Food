@@ -5,8 +5,8 @@ import { OrderModel } from "../../models";
 export const getAllOrder = async (req: Request, res: Response) => {
     try {
         const order = await OrderModel.find()
-            .populate("user", "name email")
-            .populate("foods.food");
+            .populate("user")
+            .populate("foods");
 
         res.status(200).json({
             message: "Buh zahialguud",

@@ -16,8 +16,3 @@ api.interceptors.request.use((config) => {
 });
 
 export default api;
-
-
-// export const api = axios.create({
-//   baseURL: 'https://food-ahv2.onrender.com',
-// });

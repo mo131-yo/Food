@@ -4,12 +4,13 @@ import { FoodCategoryModel } from "../../schema/Category.schema";
 export const deleteCategory = async (req: Request, res: Response) => {
     try {
         const { categoryId } = req.params;
-        const deletedCategory = await (FoodCategoryModel as any).findByIdAndDelete(categoryId);
+        const deletedCategory = await FoodCategoryModel.findByIdAndDelete({_id:categoryId});
 
         if (!deletedCategory) {
-            return res.status(404).json({ 
+             res.status(404).json({ 
                 message: "Category oldsongui" 
             });
+            return
         }
 
         res.status(200).json({

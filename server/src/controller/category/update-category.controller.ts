@@ -6,7 +6,7 @@ export const updateCategory = async (req: Request, res: Response) => {
         const { categoryId } = req.params;
         const { categoryName, description } = req.body;
 
-        const updatedCategory = await (FoodCategoryModel as any).findByIdAndUpdate(
+        const updatedCategory = await FoodCategoryModel.findByIdAndUpdate(
             categoryId,
             { categoryName, description },
             { new: true, runValidators: true }

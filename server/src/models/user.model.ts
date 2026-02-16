@@ -40,4 +40,4 @@ enum UserRole {
 
   UserSchema.index({ ttl: 1 }, { expireAfterSeconds: 0 });
 
-export const UserModel= models["User"] || model("User", UserSchema);
+export const UserModel:Model<User>= models["User"] || model("User", UserSchema);

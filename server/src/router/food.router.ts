@@ -8,10 +8,10 @@ import { getAllFood } from "../controller/foods/get-all-food.controller";
 
 export const foodRouter = Router();
 
-foodRouter.post("/create-food-item", createFoodItem);
+foodRouter.post("/create-food-item", authentication, authorization, createFoodItem);
 
-foodRouter.delete("/delete-food/:foodId", deleteFood)
-foodRouter.patch("/update-food/:foodId", updateFood)
+foodRouter.delete("/delete-food/:foodId",authentication, authorization, deleteFood)
+foodRouter.patch("/update-food/:foodId", authentication, authorization, updateFood)
 
-foodRouter.get("/get-food-by-id/:foodId", getFoodByIdGet)
+foodRouter.get("/get-food-by-id/:foodId",authentication, authorization, getFoodByIdGet)
 foodRouter.get("/get-all-food", getAllFood)

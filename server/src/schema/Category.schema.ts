@@ -1,4 +1,4 @@
-import mongoose, { model, models, Schema } from "mongoose";
+import mongoose, { Model, model, models, Schema } from "mongoose";
 
 export interface IFoodCategory {
     categoryName: string;
@@ -11,4 +11,4 @@ const FoodCategorySchema = new Schema<IFoodCategory>({
 }, { timestamps: true });
 
 // export const FoodCategoryModel = mongoose.models.Category || mongoose.model<IFoodCategory>("FoodCategory", FoodCategorySchema);
-export const FoodCategoryModel = models["FoodCategory"] || model<IFoodCategory>("FoodCategory", FoodCategorySchema);
+export const FoodCategoryModel:Model<IFoodCategory> = models["FoodCategory"] || model<IFoodCategory>("FoodCategory", FoodCategorySchema);

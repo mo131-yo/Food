@@ -22,7 +22,7 @@ interface User extends Document {
 }
 
 const UserSchema = new Schema<User>({
-    name: { type: String, required: true },
+    name: { type: String},
     email: { type: String, required: true, unique:true},
     password: { type: String, required: true },
     role: { type: String, enum: ["USER", "ADMIN"], default: UserRole.USER },
@@ -37,6 +37,5 @@ const UserSchema = new Schema<User>({
     refreshToken: { type:String }
 }, 
 { timestamps: true });
-// export const UserModel = models["User"] || model("User", UserSchema);
 
 export const UserModel = model<User>("User", UserSchema);

@@ -26,7 +26,7 @@ export const Footer = () => {
                 100% { left: 100%; }
               }
               .animate-ongots { 
-                animation: moving 14s linear infinite; 
+                animation: moving 13s linear infinite; 
                 background-image: var(--ongots-url); 
               }
 
@@ -35,10 +35,10 @@ export const Footer = () => {
               0% { left: -25%; }
               100% { left: 100%; }
             }
-            .animate-ongots { animation: myfirst 14s linear infinite; }
-            .animate-car { animation: myfirst 22s linear infinite; }
+            .animate-ongots { animation: myfirst 13s linear infinite; }
+            .animate-car { animation: myfirst 20s linear infinite; }
             .animate-bike { animation: myfirst 30s linear infinite; }
-            .animate-moto { animation: myfirst 26s linear infinite; }
+            .animate-moto { animation: myfirst 25s linear infinite; }
           `},
            {`
 
@@ -119,7 +119,7 @@ export const Footer = () => {
           </Marquee>
         </div>
 
-        <div className='relative w-full h-[755px] bg-white dark:bg-black'>
+        <div className='relative w-full h-188.75 bg-white dark:bg-black'>
           <div className='relative z-10 flex p-10 items-center justify-center md:justify-start'>
             <img src="FoodIcon.png" className='w-12 h-10 mr-3 dark:hidden' alt="Food Icon" />
             <img src="yellow.png" className='w-19 h-14 mr-3 hidden dark:block' />
@@ -152,25 +152,25 @@ export const Footer = () => {
     
     <div className='flex gap-4'>
       <a href="#" className="social-icon-box w-12 h-12 rounded-full bg-gray-300 dark:bg-white flex items-center justify-center transition-all duration-300 hover:bg-[#3B5998] group">
-        <i className="fa fa-facebook text-[#595959] text-xl transition-all duration-500 group-hover:rotate-[360deg] group-hover:text-white">
+        <i className="fa fa-facebook text-[#595959] text-xl transition-all duration-500 group-hover:rotate-360 group-hover:text-white">
           <FaFacebook />
         </i>
       </a>
       <a href="#" className="social-icon-box w-12 h-12 rounded-full bg-gray-300 dark:bg-white flex items-center justify-center transition-all duration-300 hover:bg-gray-500 group">
-        <i className="fa fa-linkedin text-[#595959] text-xl transition-all duration-500 group-hover:rotate-[360deg] group-hover:text-white"><FaGithub /></i>
+        <i className="fa fa-linkedin text-[#595959] text-xl transition-all duration-500 group-hover:rotate-360 group-hover:text-white"><FaGithub /></i>
       </a>
 
       <a href="#" className="social-icon-box w-12 h-12 rounded-full bg-gray-300 dark:bg-white flex items-center justify-center transition-all duration-300 hover:bg-[#E1306C] group">
-        <i className="fa fa-instagram text-[#595959] text-xl transition-all duration-500 group-hover:rotate-[360deg] group-hover:text-white"><FaInstagram /></i>
+        <i className="fa fa-instagram text-[#595959] text-xl transition-all duration-500 group-hover:rotate-360 group-hover:text-white"><FaInstagram /></i>
       </a>
     </div>
   </div>
 </div>
 
-<div className='border-t border-white/30 mr-20 ml-20'></div>
+<div className='border-t border-white/30 mr-20 ml-20 dark:border-white'></div>
 
-          <div className="absolute bottom-0 left-0 w-full h-[266px] pointer-events-none">
-              <div className="absolute bottom-[250px] w-[288px] h-[160px] animate-ongots bg-no-repeat bg-contain z-0" />
+          <div className="absolute bottom-0 left-0 w-full h-66.5 pointer-events-none">
+              <div className="absolute bottom-62.5 w-[288px] h-40 animate-ongots bg-no-repeat bg-contain z-0" />
               
             <div className="absolute inset-0 bg-repeat-x bg-bottom h-full w-full" 
               style={{ 
@@ -179,23 +179,23 @@ export const Footer = () => {
               }}>
             </div>
             
-            <div className="absolute bottom-0 w-[330px] h-[105px] animate-car bg-no-repeat bg-contain"
+            <div className="absolute bottom-0 w-82.5 h-26.25 animate-car bg-no-repeat bg-contain"
               style={{ backgroundImage: "url('https://media4.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NXZmMjA2MjVxdXJyc2dtNmUwcjRkajBwOXQ1cTQzMGhteW4xZ2x3ayZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/gKx8NdL6pZIcsGmJHL/200.webp')" }}>
             </div>
-
-            <div className="absolute bottom-0 w-[88px] h-[100px] animate-bike bg-no-repeat bg-contain"
+ 
+            <div className="absolute bottom-0 w-22 h-25 animate-bike bg-no-repeat bg-contain"
               style={{ backgroundImage: "url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyLGwEUVwPK6Vi8xXMymsc-ZXVwLWyXhogZxbcXQYSY55REw_0D4VTQnsVzCrL7nsyjd0P7RVOI5NKJbQ75koZIalD8mqbMquP20fL3DxsWngKkOLOzoOf9sMuxlbyfkIBTsDw5WFUj-YJiI50yzgVjF8cZPHhEjkOP_PRTQXDHEq8AyWpBiJdN9SfQA/s16000/cyclist.gif')" }}>
             </div>
             
 
-            <div className="absolute bottom-0 w-[168px] h-[120px] animate-moto bg-no-repeat bg-contain"
+            <div className="absolute bottom-0 w-42 h-30 animate-moto bg-no-repeat bg-contain"
               style={{ backgroundImage: "url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTJ5ZDVkeWFlMjFqc2JxNHNqNWhnd3l0cjJxc3diMG10cm81OHl0bCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/LcCmLpLLF84xBvThSv/giphy.webp')" }}>
             </div>
           </div>
 
         </div>
 
-        <div className='bg-black py-4 text-center text-gray-400 text-xs border-t border-gray-100 relative z-30'>
+        <div className='bg-black py-4 text-center text-gray-400 text-xs border-t border-gray-100 relative z-30 '>
           © 2026 YamYam Food Delivery created by mo131-yo.
         </div>    
     </div>

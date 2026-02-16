@@ -5,7 +5,7 @@ const OrderSchema = new Schema({
     foods: [{ 
         food: { type: Schema.Types.ObjectId, ref: "Food", required: true }
     }],
-    totalPrice: { type: Number, required: true },
+    totalPrice: { type: Number },
     address: { type: String, required: true },
     status: { 
         type: String, 

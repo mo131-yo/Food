@@ -1,10 +1,7 @@
-// npm install next-themes lucide-react
-
 "use client";
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { IoMdRestaurant } from "react-icons/io";
 
 export const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -14,13 +11,13 @@ export const ThemeToggle = () => {
     setMounted(true);
   }, []);
 
-  if (!mounted) return <div className="w-[55px] h-[30px]" />;
+  if (!mounted) return <div className="w-13.75 h-7.5" />;
 
   const isDark = theme === "dark";
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
-      <div className="relative inline-block w-[55px] h-[30px]">
+      <div className="relative inline-block w-13.75 h-7.5">
         <input
           type="checkbox"
           id="switch"
@@ -32,16 +29,15 @@ export const ThemeToggle = () => {
           htmlFor="switch"
           className={`
             block w-full h-full cursor-pointer rounded-full 
-            transition-colors duration-[1000ms]
+            transition-colors duration-1000
             ${isDark ? "bg-yellow-500" : "bg-red-500"}
           `}
         >
           <span
             className={`
-              absolute top-[5px] left-[4px] w-[20px] h-[20px] bg-white rounded-full
+              absolute top-1.25 left-1 w-5 h-5 bg-white rounded-full
               shadow-lg
-              /* Шилжилтийн тохиргоо */
-                transition-all duration-[800ms] 
+                transition-all duration-800 
               ${isDark ? "translate-x-[27px]" : "translate-x-0"}
             `}
           />

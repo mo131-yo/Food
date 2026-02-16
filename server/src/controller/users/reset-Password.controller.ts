@@ -7,6 +7,8 @@ export const resetPassword = async (req: Request, res: Response) => {
     try {
         const { email, verifyCode, newPassword } = req.body;
 
+        // otp eeree verify hiigeed otp ni taarwal newpassword huudas ruu usrene.
+
         const user = await UserModel.findOne({ email });
 
         if (!user) {

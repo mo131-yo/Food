@@ -5,7 +5,7 @@ export const getFoodCategoryById = async (req: Request, res: Response) => {
     try {
         const { categoryId } = req.params; 
 
-        const foodCategory = await (FoodCategoryModel as any).findById(categoryId); 
+        const foodCategory = await FoodCategoryModel.findById(categoryId); 
 
         if (!foodCategory) {
             return res.status(404).json({ message: "Category oldsongui" });

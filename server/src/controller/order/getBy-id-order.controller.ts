@@ -6,8 +6,8 @@ export const getOrderByIdGet = async (req: Request, res: Response) => {
         const { userId } = req.params; 
 
         const orders = await OrderModel.find({ user: userId } as any)
-            .populate("foods.food")
-            .populate("user", "name email");
+            .populate("foods")
+            .populate("user");
 
         if (!orders || orders.length === 0) {
             return res.status(404).json({ message: "Userd zahialga oldsongui" });

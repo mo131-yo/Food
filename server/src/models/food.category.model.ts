@@ -1,4 +1,4 @@
-import mongoose, { models, model, Schema } from "mongoose";
+import mongoose, { models, model, Schema, Model } from "mongoose";
 
 export interface IFoodCategory {
     categoryName: string;
@@ -10,4 +10,4 @@ const FoodCategorySchema = new Schema<IFoodCategory>({
     description: { type: String },
 }, { timestamps: true });
 
-export const FoodCategoryModel = models["FoodCategory"] || model<IFoodCategory>("FoodCategory", FoodCategorySchema);
+export const FoodCategoryModel:Model<IFoodCategory> = models["FoodCategory"] || model<IFoodCategory>("FoodCategory", FoodCategorySchema);

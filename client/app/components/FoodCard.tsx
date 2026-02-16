@@ -33,7 +33,7 @@ const FoodCard = ({ foods }: FoodProps) => {
         borderRadius: '5px',
         cursor: 'pointer'
       }}>
-        Сагслах
+        add
       </button>
       
     </div>

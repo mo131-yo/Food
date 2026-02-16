@@ -1,19 +1,25 @@
 import { Request, Response, NextFunction } from "express";
+import { UserModel } from "../models";
 
 export const roleMiddleware = (allowedRoles: string[]) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     const user = (req as any).user; 
-
     if (!user) {
-      return res.status(401).json({ message: "Нэвтрээгүй байна" });
+      return res.status(401).json({ message: "Nevtreegui bn" });
     }
+        const userId = (user.id || user._id) as string;
 
-    if (!allowedRoles.includes(user.role)) {
-      return res.status(403).json({ 
-        message: "Танд энэ үйлдлийг хийх эрх байхгүй (Зөвхөн Админ)." 
-      });
-    }
+      const userIdFind = await UserModel.findById(userId);
 
+      if (!userIdFind) {
+        return res.status(404).json({ message: "User oldsongui" });
+      }
+
+      if (!allowedRoles.includes(userIdFind.role)) {
+        return res.status(403).json({
+          message: "Eniig hiih erh alga tand"
+        });
+      }
     next();
   };
 };

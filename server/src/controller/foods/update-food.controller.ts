@@ -8,10 +8,11 @@ export const updateFood = async (req: Request, res: Response) => {
     const updateData = req.body; 
 
     if (typeof foodId !== 'string' || !mongoose.Types.ObjectId.isValid(foodId)) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: "Id huchingui.",
       });
+      return
     }
 
     const updatedFood = await (FoodModel as any).findByIdAndUpdate(
@@ -21,10 +22,11 @@ export const updateFood = async (req: Request, res: Response) => {
     );
 
     if (!updatedFood) {
-      return res.status(404).json({
+       res.status(404).json({
         success: false,
         message: "Khool olsongui",
       });
+      return;
     }
 
     return res.status(200).json({

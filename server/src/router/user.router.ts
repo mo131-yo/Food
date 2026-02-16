@@ -1,4 +1,4 @@
-import { createUser, getUserByIdAndGet, refresh, updateUser } from "../controller";
+import { getUserByIdAndGet, refresh, updateUser } from "../controller";
 import { Router } from "express";
 import { signUpController } from "../controller/users/Nevterh/sign-up-controller";
 import { signInController } from "../controller/users/Nevterh/sign-in-controller";
@@ -8,8 +8,6 @@ import { resetPassword } from "../controller/users/reset-Password.controller";
 import { resetPasswordRequest } from "../controller/users/reset-password-request.controller";
 
 export const userRouter = Router();
-
-userRouter.post("/create-user", createUser);
 
 userRouter.get("/get-user-by-id-get-request/:userId", getUserByIdAndGet);
 
