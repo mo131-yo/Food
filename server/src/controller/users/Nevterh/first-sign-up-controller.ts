@@ -48,7 +48,7 @@ export const firstSignUp = async (req: Request, res: Response) => {
         );
 
         // const verificationLink = `${process.env.BACKEND_URL || "http://localhost:8000"}/users/verify-email?token=${token}`;
-        const verificationLink = `${process.env.FRONTEND_URL || "http://localhost:8000"}/verify-email?token=${token}`;
+        const verificationLink = `${process.env.FRONTEND_URL || "http://localhost:3000"}/verify-email?token=${token}`;
 
         await verifyUserEmail(email, verificationLink);
 
