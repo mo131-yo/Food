@@ -20,4 +20,4 @@ export const FoodSchema = new Schema({
 }, { timestamps: true });
 
 // export const FoodModel:Model<iFood> = models["Food"] || mongoose.model("Food", FoodSchema);
-export const FoodModel:Model<iFood> = models["Food"] || model<iFood>("Food", FoodSchema);
+export const  FoodModel:Model<iFood> = models["Food"] || model<iFood>("Food", FoodSchema);

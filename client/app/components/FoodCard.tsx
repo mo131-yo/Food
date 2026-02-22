@@ -111,13 +111,14 @@ const FoodCard = ({ foods, id }: FoodProps) => {
     ? `https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/${foods.image}` 
     : "https://via.placeholder.com/150";
 
-  const handleAddToCart = (qty: number) => {
+const handleAddToCart = (qty: number) => {
     addToCart({ 
       id: id, 
       name: foods.name, 
       price: foods.price, 
       image: foods.image, 
-      quantity: qty 
+      quantity: qty,
+      ingredients: foods.ingredients?.join(", ") || "Fresh ingredients" // Энэ мөрийг нэмж өгнө 👈
     });
     
     toast.success(`${foods.name} сагслагдлаа!`, {
