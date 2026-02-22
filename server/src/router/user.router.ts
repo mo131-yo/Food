@@ -1,6 +1,6 @@
-import { getUserByIdAndGet, refresh, updateUser } from "../controller";
+import { getUserByIdAndGet, lastSignUp, refresh, updateUser } from "../controller";
 import { Router } from "express";
-import { signUpController } from "../controller/users/Nevterh/sign-up-controller";
+import { firstSignUp } from "../controller/users/Nevterh/first-sign-up-controller";
 import { signInController } from "../controller/users/Nevterh/sign-in-controller";
 import { verifyEmail } from "../controller/users/verify-email.controller";
 import { getAllUsers } from "../controller/users/all-user.controller";
@@ -13,7 +13,8 @@ userRouter.get("/get-user-by-id-get-request/:userId", getUserByIdAndGet);
 
 userRouter.get("/all-users", getAllUsers)
 
-userRouter.post("/sign-up", signUpController);
+userRouter.post("/sign-up", firstSignUp);
+userRouter.post("/last-sign-up", lastSignUp);
 userRouter.post("/sign-in", signInController);
 
 userRouter.get("/verify-email", verifyEmail);

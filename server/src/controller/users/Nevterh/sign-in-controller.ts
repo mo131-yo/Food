@@ -1,4 +1,4 @@
-import { UserModel } from "../../../schema/user.schema";
+import { UserModel, UserRole } from "../../../schema/user.schema";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -16,6 +16,7 @@ export const signInController = async (req: Request, res: Response) => {
         if (!isPasswordValid) {
             return res.status(401).json({ message: "Nuuts ug buruu bna" });
         }
+        console.log(user.role);
 
         const accessToken = jwt.sign(
             { userId: user._id, email: user.email, role: user.role},

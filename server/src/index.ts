@@ -12,7 +12,15 @@ configDotenv();
 const app: Application = express();
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+// cors({ origin: "http://localhost:3000" })
+app.use(cors({
+  origin: "http://localhost:3000", // Frontend ажиллаж байгаа хаяг
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+  credentials: true
+}));
+
+
 
 app.get("/", (req, res) => {
     res.send("Server is running!");

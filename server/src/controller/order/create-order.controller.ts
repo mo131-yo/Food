@@ -3,40 +3,27 @@ import { FoodModel, OrderModel } from "../../models";
 
 export const createOrder = async (req: any, res: Response) => {
 
-
-    ///
-//     {
-//        foods: [{
-//         foodid:"hjasndhas",
-//         quantity:2
-//     },
-// {
-//         foodid:"hjasndhas",
-//         quantity:2
-//     }],
-//     address:"hasndhasbdhabsdjhas",
-// user:"jhabsjhabshjdbas"
-//     }
-
-
     try {
         const { foods,  address } = req.body;
         const userId = req.user.userId;
-
-
-        // const calculateTotalPrice = 
-        // foodid -> find hiigeed price awchrana
         
-        let totalPrice = 0;
+      const foodCalculations = await Promise.all(
+            foods.map(async (item: any) => {
+                const food = await FoodModel.findById(item.foodId);
+                
+                if (!food) {
+                    throw new Error(`Food oldsongui: ${item.foodId}`);
+                }
 
-        for (const item of foods) {
-            const food = await FoodModel.findById(item.foodId);
-            
-            if (!food) {
-                return res.status(404).json({ message: `Khool oldsongui: ${item.foodId}` });
-            }
-            totalPrice += food.foodPrice * item.quantity;
-        }
+                return {
+                    price: food.foodPrice,
+                    quantity: item.quantity
+                };
+            })
+        );
+        const totalPrice = foodCalculations.reduce((sum, item) => {
+            return sum + (item.price * item.quantity);
+        }, 0);
 
         const newOrder = await OrderModel.create({
             user: userId,

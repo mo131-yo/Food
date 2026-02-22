@@ -19,12 +19,13 @@ interface User extends Document {
   phoneNumber: string,
   userName: string,
   refreshToken: string,
+  ttl?: Date;
 }
 
 const UserSchema = new Schema<User>({
     name: { type: String},
     email: { type: String, required: true, unique:true},
-    password: { type: String, required: true },
+    password: { type: String, required: false },
     role: { type: String, enum: ["USER", "ADMIN"], default: UserRole.USER },
     isVerified: { type: Boolean, default: false },
     address: { type: String},
@@ -34,7 +35,8 @@ const UserSchema = new Schema<User>({
     resetPasswordOtp: {type: String, required: false},
     resetPasswordExpires: {type: Date, required: false},
     userName: { type:String},
-    refreshToken: { type:String }
+    refreshToken: { type:String },
+     ttl: { type: Date, required: false },
 }, 
 { timestamps: true });
 

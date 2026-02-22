@@ -1,21 +1,22 @@
 "use client";
-
 import React, { useEffect, useState } from 'react';
-import api from './utils/axios';
-import { Appetizers } from './components/Appetizers';
+import FoodCard from './components/FoodCard';
 
-export default function HomePage() {
+export default function FoodListPage() {
   const [foods, setFoods] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
+  
   useEffect(() => {
-    const getFoods = async () => {
+    const fetchFoods = async () => {
       try {
-        const response = await api.get('/foods'); 
-        console.log("Бүх хоол:", response.data.data); 
-        
-        if (response.data && response.data.data) {
-          setFoods(response.data.data); 
+        // Зөв хаяг: /foods/get-all-food
+        const response = await fetch('http://localhost:8000/foods/get-all-food');
+        const result = await response.json();
+
+        if (response.ok) {
+          // Чиний дата result.data дотор ирж байна
+          setFoods(result.data); 
         }
       } catch (error) {
         console.error("Fetch Error:", error);
@@ -23,29 +24,26 @@ export default function HomePage() {
         setLoading(false);
       }
     };
-    getFoods();
+
+    fetchFoods();
   }, []);
 
-  if (loading) return <div className="text-white text-center p-20">Unshij bn</div>;
+  if (loading) return <div className="p-10 text-center">Уншиж байна...</div>;
 
   return (
-    <div className='p-5 bg-white dark:bg-black min-h-screen'>
-      <Appetizers />
-
-      <h2 className='text-white text-2xl mb-4 mt-10'>All Menu</h2>
-      <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
-        {foods.map((item) => (
-          <div key={item._id} className="bg-gray-800 p-4 rounded-xl">
-            <img 
-              src={item.foodImage || "https://via.placeholder.com/150"} 
-              alt={item.foodName} 
-              className="w-full h-40 object-cover rounded" 
-            />
-            <h3 className="font-bold text-white mt-2">{item.foodName}</h3>
-            <p className="text-red-500">{item.foodPrice}₮</p>
-          </div>
-        ))}
-      </div>
+    <div className="flex flex-wrap gap-5 p-5 bg-gray-50 min-h-screen">
+      {foods.map((food) => (
+        <FoodCard 
+          key={food._id}
+          foods={{
+            name: food.foodName, // Backend-ийн foodName-ийг name руу
+            price: food.foodPrice, // Backend-ийн foodPrice-ийг price руу
+            image: food.foodImage, // foodImage
+            ingredients: food.ingredients // Ene ni massiv (array)
+          }} id={''}        />
+      ))}
+      
     </div>
+    // npm install react-hot-toast
   );
 }

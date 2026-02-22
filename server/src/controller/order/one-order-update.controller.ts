@@ -3,30 +3,31 @@ import { OrderModel } from "../../schema/order.schema";
 
 export const oneOrderUpdate = async (req: Request, res: Response) => {
     try {
-        const { orderIds, newStatus } = req.body;
-
-        if (!Array.isArray(orderIds) || orderIds.length === 0) {
-            return res.status(400).json({ message: "Zahialgiin id jagsaalt hooson bn" });
-        }
+        const { orderId } = req.params; 
+        const { newStatus } = req.body;
 
         const validStatuses = ["Pending", "Processing", "Delivered", "Cancelled"];
         if (!validStatuses.includes(newStatus)) {
-            return res.status(400).json({ message: "buruu tuluv" });
+            return res.status(400).json({ message: "Buruu utga ilgeesen baina" });
         }
 
-        const filter: any = { _id: { $in: orderIds } };
-        const result = await OrderModel.updateMany(
-            filter, 
-            { $set: { status: newStatus } }
+        const updatedOrder = await OrderModel.findByIdAndUpdate(
+            orderId,
+            { status: newStatus },
+            { new: true }
         );
 
+        if (!updatedOrder) {
+            return res.status(404).json({ message: "Order oldsongui" });
+        }
+
         res.status(200).json({
-            message: "Zahialgiin tuluv amjilttai shinchillee",
-            updatedCount: result.modifiedCount
+            message: "Zahialga update successfull",
+            order: updatedOrder
         });
 
     } catch (error) {
-        console.error("Update Error:", error);
+        console.error("Single Update Error:", error);
         res.status(500).json({ message: "Aldaa garlaa" });
     }
 };

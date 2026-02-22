@@ -4,6 +4,9 @@ import { Header } from './components/Header';
 import { Footer } from "./components/Footer";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from 'react-hot-toast';  
+import { CartProvider } from "./components/CartProvider";
+import { AuthProvider } from "./context/AuthContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,11 +37,16 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
+          <AuthProvider>
+         <CartProvider>
+            <Toaster position="top-center" />
+            <Header />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <Footer />
+          </CartProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
