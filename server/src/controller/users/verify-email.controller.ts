@@ -76,7 +76,6 @@ import { UserModel } from "../../schema/user.schema";
 
 
 
-// controller/users/verify-email.controller.ts
 export const verifyEmail = async (req: Request, res: Response) => {
     try {
         const { token } = req.query; 
@@ -84,23 +83,20 @@ export const verifyEmail = async (req: Request, res: Response) => {
         if (!token) {
             return res.status(400).json({ message: "Token байхгүй байна" });
         }
-
-        // Токеныг шалгах (JWT_SECRET зөв эсэхийг шалгана)
         jwt.verify(token as string, process.env.JWT_SECRET || "hello");
-
-        // АНХААР: Энд байгаа замыг Frontend-ийн хавтасны нэртэй ижил болгоно
-        // Чиний Frontend хавтас 'verify-email' нэртэй байгаа тул:
-        const frontendUrl = `${process.env.FRONTEND_URL || "http://localhost:3000"}/verify-email?token=${token}`;
+        const frontendUrl = `${process.env.FRONTEND_URL || "http://localhost:8000" || process.env.BACKEND_API}/verify-email?token=${token}`;
         
         return res.redirect(frontendUrl);
     } catch (error) {
-        // Токен буруу эсвэл хугацаа нь дууссан бол
         return res.status(400).send(`
-            <div style="text-align:center; padding-top:50px; font-family:sans-serif;">
-                <h1 style="color:red;">Баталгаажуулах линк хүчингүй</h1>
-                <p>Линкний хугацаа дууссан эсвэл буруу байна. Та дахин бүртгүүлэх хүсэлт илгээнэ үү.</p>
-                <a href="${process.env.FRONTEND_URL}/sign-up">Буцах</a>
-            </div>
+        
         `);
     }
 };
+
+
+// <div style="text-align:center; padding-top:50px; font-family:sans-serif;">
+//                 <h1 style="color:red;">Verify Link huchingui</h1>
+//                 <p>Linkiin hugatsaa duussan bn. Ta dahin burtguuleh huselt ilgeene uu</p>
+//                 <a href="${process.env.FRONTEND_URL}/sign-up">Butsah</a>
+//             </div>

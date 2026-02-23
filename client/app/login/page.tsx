@@ -22,18 +22,16 @@ export default function LoginPage() {
       const data = await res.json();
 
       if (res.ok) {
-        // Токен болон хэрэглэгчийн мэдээллийг хадгалах
         localStorage.setItem('accessToken', data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
         localStorage.setItem('user', JSON.stringify(data.user));
         
         toast.success("Тавтай морил!");
         
-        // Нүүр хуудас руу шилжүүлээд хуудсыг шинэчлэх (Төлөв өөрчлөхөд тустай)
         router.push('/');
         router.refresh();
       } else {
-        toast.error(data.message || "И-мэйл эсвэл нууц үг буруу байна");
+        toast.error(data.message || "Email esvel nuuts ug buruu bn");
       }
     } catch (error) {
       toast.error("Сервертэй холбогдоход алдаа гарлаа");
@@ -44,7 +42,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] py-10">
-      <form onSubmit={handleLogin} className="bg-white p-10 rounded-[32px] shadow-2xl border w-full max-w-md">
+      <form onSubmit={handleLogin} className="bg-white p-10 rounded-4xl shadow-2xl border w-full max-w-md">
         <h1 className="text-2xl font-black mb-6 text-center">Нэвтрэх</h1>
         
         <div className="space-y-4">

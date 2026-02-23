@@ -9,41 +9,35 @@ export default function ProfilePage() {
   const router = useRouter();
 
   useEffect(() => {
-    // LocalStorage-оос хэрэглэгчийн мэдээллийг унших
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     } else {
-      // Хэрэв мэдээлэл байхгүй бол нэвтрэх хуудас руу буцаах
       router.push('/login');
     }
   }, [router]);
 
   const handleLogout = () => {
-    // Бүх мэдээллийг устгах
     localStorage.clear();
     toast.success("Амжилттай гарлаа");
     
-    // Нүүр хуудас руу шилжүүлээд, төлвийг шинэчлэх
     router.push('/');
     router.refresh();
   };
 
-  if (!user) return <div className="flex justify-center items-center min-h-screen">Уншиж байна...</div>;
+  if (!user) return <div className="flex justify-center items-center min-h-screen">Loading ...</div>
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] py-20 px-4">
-      <div className="bg-white dark:bg-zinc-900 p-8 rounded-[32px] shadow-2xl border border-gray-100 dark:border-zinc-800 w-full max-w-md transition-all">
+      <div className="bg-white dark:bg-zinc-900 p-8 rounded-4xl shadow-2xl border border-gray-100 dark:border-zinc-800 w-full max-w-md transition-all">
         
-        {/* Profile Header */}
         <div className="flex flex-col items-center mb-8">
           <div className="w-24 h-24 bg-red-50 dark:bg-yellow-900/20 rounded-full flex items-center justify-center mb-4 border-2 border-red-500 dark:border-yellow-500">
             <MdOutlinePersonOutline size={48} className="text-red-500 dark:text-yellow-500" />
           </div>
-          <h1 className="text-2xl font-black text-gray-800 dark:text-white">Миний Профайл</h1>
+          <h1 className="text-2xl font-black text-gray-800 dark:text-white">Profile</h1>
         </div>
 
-        {/* User Info Card */}
         <div className="space-y-4 mb-8">
           <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-zinc-800 rounded-2xl border border-gray-100 dark:border-zinc-700">
             <MdEmail size={24} className="text-gray-400" />
@@ -54,7 +48,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Actions */}
         <div className="space-y-3">
           <button 
             onClick={() => router.push('/')}

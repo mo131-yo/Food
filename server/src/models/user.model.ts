@@ -1,4 +1,4 @@
-import { Model, model, models, Schema} from "mongoose";
+import mongoose, { Model, model, models, Schema} from "mongoose";
 
 enum UserRole {
     USER= "USER",
@@ -17,7 +17,7 @@ enum UserRole {
     ttl?: Date;
     verificationToken?: string;
     refreshToken: string,
-    // orderedFoods: ObjectId[];
+    // orderedFoods: mongoose.Types.ObjectId[];
     };
 
 
@@ -32,8 +32,8 @@ enum UserRole {
     verificationToken: { type: String },
     phoneNumber: {type: String},
     address: {type: String, required: true},
-    refreshToken: { type:String }
-    // orderedFoods: { type: Schema.Types.ObjectId },
+    refreshToken: { type:String },
+    // orderedFoods: { type: Schema.Types.ObjectId[] },
    },
    {timestamps: true},
   );

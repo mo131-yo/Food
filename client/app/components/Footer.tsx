@@ -135,16 +135,16 @@ export const Footer = () => {
 
 <div className='relative z-10 flex flex-col md:flex-row justify-between items-start p-10 gap-10'>
   <div className='flex flex-col gap-3'>
-      <p className='text-red-500 font-bold text-xl mb-2 tracking-tighter dark:text-yellow-500'>YAMYAM</p>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium dark:hover:text-yellow-500'>Home</a>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium dark:hover:text-yellow-500'>Contact us</a>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium dark:hover:text-yellow-500'>Delivery zone</a>
+      <p className='text-red-500 font-bold text-xl mb-2 tracking-tighter'>YAMYAM</p>
+      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Home</a>
+      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Contact us</a>
+      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Delivery zone</a>
   </div>
     <div className='flex flex-col gap-3'>
       <p className='text-red-500 font-bold text-xl mb-2 tracking-tighter dark:text-yellow-500'>MENU</p>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium dark:hover:text-yellow-500'>Home</a>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium dark:hover:text-yellow-500'>Contact us</a>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium dark:hover:text-yellow-500'>Delivery zone</a>
+      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Home</a>
+      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Contact us</a>
+      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Delivery zone</a>
   </div>
 
   <div className='flex flex-col gap-4 items-center md:items-end'>

@@ -1,7 +1,6 @@
 "use client";
 import React, { createContext, ReactNode, useContext, useState } from 'react';
 
-// 1. Интерфэйсүүд
 interface CartItem {
   id: string;
   name: string;
@@ -19,7 +18,6 @@ interface CartContextType {
   updateQuantity: (id: string, delta: number) => void;
 }
 
-// 2. Context-оо зарлах (Энд нэрийг нь зөв өгөх ёстой)
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
@@ -49,14 +47,12 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const clearCart = () => setCart([]);
 
   return (
-    /* 3. Энд CartContext гэдэг нэр нь дээр зарласантайгаа яг ижил байх ёстой */
     <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, updateQuantity }}>
       {children}
     </CartContext.Provider>
   );
 };
 
-// 4. Hook-оо экспортлох
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) throw new Error("useCart must be used within CartProvider");

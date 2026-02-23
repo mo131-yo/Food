@@ -10,12 +10,10 @@ export default function FoodListPage() {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        // Зөв хаяг: /foods/get-all-food
         const response = await fetch('http://localhost:8000/foods/get-all-food');
         const result = await response.json();
 
         if (response.ok) {
-          // Чиний дата result.data дотор ирж байна
           setFoods(result.data); 
         }
       } catch (error) {
@@ -28,7 +26,7 @@ export default function FoodListPage() {
     fetchFoods();
   }, []);
 
-  if (loading) return <div className="p-10 text-center">Уншиж байна...</div>;
+  if (loading) return <div className="p-10 text-center">Loading ...</div>
 
   return (
     <div className="flex flex-wrap gap-5 p-5 bg-gray-50 min-h-screen">
@@ -36,14 +34,12 @@ export default function FoodListPage() {
         <FoodCard 
           key={food._id}
           foods={{
-            name: food.foodName, // Backend-ийн foodName-ийг name руу
-            price: food.foodPrice, // Backend-ийн foodPrice-ийг price руу
-            image: food.foodImage, // foodImage
-            ingredients: food.ingredients // Ene ni massiv (array)
+            name: food.foodName,
+            price: food.foodPrice,
+            image: food.foodImage,
+            ingredients: food.ingredients,
           }} id={''}        />
       ))}
-      
     </div>
-    // npm install react-hot-toast
   );
 }

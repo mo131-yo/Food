@@ -10,7 +10,7 @@ export const ResetPasswordVerificationEmail = async (
   otpCode: string
 ) => {
   try {
-    const { data, error } = await resend.emails.send({
+    const { data } = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: reciever,
       subject: "Nuuts ug batalgaajuulah code",

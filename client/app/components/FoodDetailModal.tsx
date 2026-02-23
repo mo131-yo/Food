@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import { MdCancel } from "react-icons/md";
 
 interface ModalProps {
   isOpen: boolean;
@@ -16,14 +17,13 @@ const FoodDetailModal = ({ isOpen, onClose, food, imageUrl, onAddToCart }: Modal
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-      <div className="relative flex flex-col md:flex-row w-full max-w-3xl overflow-hidden rounded-[32px] bg-white shadow-2xl">
-        {/* Хаах товч */}
+      <div className="relative flex flex-col md:flex-row w-full max-w-3xl overflow-hidden rounded-4xl bg-white shadow-2xl">
+
         <button 
           onClick={onClose}
-          className="absolute right-6 top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-white text-gray-500 shadow-sm hover:bg-gray-50 transition"
-        >
-          ✕
-        </button>
+          className="absolute right-6 top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-white text-gray-500 shadow-sm hover:bg-gray-50 transition">
+          <MdCancel />
+        </button> 
 
         {/* Зүүн тал - Зураг */}
         <div className="w-full md:w-1/2 h-64 md:h-auto">
