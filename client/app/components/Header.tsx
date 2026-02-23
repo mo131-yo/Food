@@ -36,11 +36,10 @@ export const Header = () => {
         {/* Лого хэсэг */}
         <div className="flex items-center gap-4 cursor-pointer" onClick={() => router.push('/')}> 
           <div className='flex items-center ml-4'>
-            <img src="FoodIcon.png" className='w-11 h-9 mr-3 dark:hidden' alt="Logo" />
-            <img src="yellow.png" className='w-19 h-14 mr-3 relative right-3 hidden dark:block' alt="Logo" />
+            <img src="FoodIcon.png" className='w-11 h-9 mr-3' alt="Logo" />
             <div className='flex flex-col leading-tight'>
               <div className='flex text-xl font-bold italic'>
-                <p className='text-red-700 dark:text-yellow-500'>Yam</p>
+                <p className='text-red-700 '>Yam</p>
                 <p className='text-white'>Yam</p>
               </div>
               <p className='text-white text-[10px] font-semibold tracking-widest uppercase'>Food Delivery</p>
@@ -50,7 +49,7 @@ export const Header = () => {
 
         <div className='flex gap-4 items-center'>
           <Link href="/cart" className="relative group w-10 h-10 rounded-full bg-white flex items-center justify-center transition-all duration-300 hover:bg-red-600 dark:hover:bg-yellow-600">
-            <div className="text-[#595959] text-2xl transition-all duration-500 group-hover:rotate-360 group-hover:text-white">
+            <div className="text-[#595959] text-black text-2xl transition-all duration-500 group-hover:rotate-360 group-hover:text-white">
               <CiShoppingCart />
             </div>
             {totalItems > 0 && (
@@ -64,7 +63,7 @@ export const Header = () => {
             onClick={handleIconClick}
             className="group w-10 h-10 rounded-full bg-white flex items-center justify-center transition-all duration-300 hover:bg-red-600 dark:hover:bg-yellow-600 cursor-pointer">
             <div className={`text-2xl transition-all duration-500 group-hover:rotate-360 
-              ${user ? 'text-green-600' : 'text-[#595959] group-hover:text-white'}`}>
+              ${user ? 'text-black' : 'text-[#595959] group-hover:text-white'}`}>
               <MdOutlinePersonOutline size={28} />
             </div>
           </div>

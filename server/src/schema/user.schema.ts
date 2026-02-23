@@ -9,8 +9,8 @@ interface User extends Document {
   email: string;
   password: string;
   isVerified: boolean;
-  resetPasswordOtp:string;
-  resetPasswordExpires : Date,
+  resetPasswordOtp?:string;
+  resetPasswordExpires? : Date,
   role: string;
   name: string;
   address: string;

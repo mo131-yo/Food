@@ -1,4 +1,4 @@
-import { getUserByIdAndGet, lastSignUp, refresh, updateUser } from "../controller";
+import { getUserByIdAndGet, lastSignUp, refresh, updateUser, verifyOtp } from "../controller";
 import { Router } from "express";
 import { firstSignUp } from "../controller/users/Nevterh/first-sign-up-controller";
 import { signInController } from "../controller/users/Nevterh/sign-in-controller";
@@ -20,6 +20,7 @@ userRouter.post("/sign-in", signInController);
 userRouter.get("/verify-email", verifyEmail);
 
 userRouter.post("/reset-password-request", resetPasswordRequest);
+userRouter.post("/verify-otp", verifyOtp);
 userRouter.post("/reset-password", resetPassword);
 
 userRouter.post("/refresh", refresh )

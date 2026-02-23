@@ -13,76 +13,84 @@ export default function CartPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const API_URL = "http://localhost:8000";
+  // const API_URL = "http://localhost:8000";
 
-  const handleCheckout = async () => {
-    if (!address) {
-      toast.error("Хүргэлтийн хаягаа оруулна уу!");
-      return;
+  // CartPage.tsx-ийн дээд хэсэгт
+const API_URL = "https://food-ahv2.onrender.com";
+
+const handleCheckout = async () => {
+  if (!address) {
+    toast.error("Хүргэлтийн хаягаа оруулна уу!");
+    return;
+  }
+
+  const token = localStorage.getItem('accessToken');
+  if (!token) {
+    toast.error("Та нэвтрэх шаардлагатай!");
+    router.push('/login');
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const foods = cart.map(item => ({
+      foodId: item.id, // Backend-ийн хүлээж авах нэр мөн эсэхийг шалга
+      quantity: item.quantity
+    }));
+
+    const response = await fetch(`${API_URL}/foods-order/create-order`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      // Хэрэв Backend чинь totalPrice нэхэж байвал энд нэмж өгнө
+      body: JSON.stringify({ foods, address, totalPrice: total }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      toast.success("Захиалга амжилттай үүслээ!");
+      clearCart();
+      setActiveTab('order');
+      fetchOrders();
+    } else {
+      toast.error(result.message || "Алдаа гарлаа");
     }
+  } catch (error) {
+    console.error("Checkout Error:", error);
+    toast.error("Сүлжээний алдаа: Сервертэй холбогдож чадсангүй");
+  } finally {
+    setLoading(false);
+  }
+};
 
-    setLoading(true);
-    const token = localStorage.getItem('accessToken');
+const fetchOrders = async () => {
+  const token = localStorage.getItem('accessToken');
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const userId = user._id || user.id; // Хоёр хувилбарыг шалгана
 
-    try {
-      const foods = cart.map(item => ({
-        foodId: item.id,
-        quantity: item.quantity
-      }));
+  if (!userId || !token) return;
 
-      const response = await fetch(`${API_URL}/order/create-order`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ foods, address }),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        toast.success("Захиалга амжилттай үүслээ!");
-        clearCart();
-        setActiveTab('order');
-        fetchOrders();
-      } else {
-        toast.error(result.message || "Алдаа гарлаа");
+  try {
+    const response = await fetch(`${API_URL}/foods-order/get-by-id-order/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`
       }
-    } catch (error) {
-      toast.error("Сүлжээний алдаа гарлаа");
-    } finally {
-      setLoading(false);
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      // Ирж буй өгөгдөл result.data эсвэл result дотор байгааг шалгах
+      setOrders(result.data || result);
     }
-  };
-
-  const fetchOrders = async () => {
-    const token = localStorage.getItem('accessToken');
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-
-    if (!user._id) return;
-
-    try {
-      const response = await fetch(`${API_URL}/order/get-by-id-order/${user._id}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      const result = await response.json();
-      if (response.ok) {
-        setOrders(result.data);
-      }
-    } catch (error) {
-      console.error("Orders fetch error", error);
-    }
-  };
-
-  useEffect(() => {
-    if (activeTab === 'order') fetchOrders();
-  }, [activeTab]);
-
+  } catch (error) {
+    console.error("Orders fetch error", error);
+  }
+};
   const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
   const shipping = (subtotal > 0 ? 5000 : 0);
   const total = subtotal + shipping;
@@ -158,6 +166,10 @@ export default function CartPage() {
               <div className="flex justify-between text-2xl font-black dark:text-white">
                 <span>Total</span>
                 <span>${total.toFixed(2)}</span>
+              </div>
+               <div className="flex justify-between text-xl font-black dark:text-white">
+                <span>Shipping</span>
+                <span>${shipping.toFixed(2)}</span>
               </div>
               <button 
                 onClick={handleCheckout}

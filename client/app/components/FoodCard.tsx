@@ -24,13 +24,14 @@ const FoodCard = ({ foods, id }: FoodProps) => {
     : "https://via.placeholder.com/150";
 
 const handleAddToCart = (qty: number) => {
-    addToCart({ 
-      id: id, 
-      name: foods.name, 
-      price: foods.price, 
-      image: foods.image, 
+    addToCart({
+      id: id,
+      name: foods.name,
+      price: foods.price,
+      image: foods.image,
       quantity: qty,
-      ingredients: foods.ingredients?.join(", ") 
+      ingredients: foods.ingredients?.join(", "),
+      _id: ''
     });
     
     toast.success(`${foods.name} сагслагдлаа!`, {

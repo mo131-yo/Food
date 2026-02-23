@@ -121,12 +121,10 @@ export const Footer = () => {
 
         <div className='relative w-full h-188.75 bg-white dark:bg-black'>
           <div className='relative z-10 flex p-10 items-center justify-center md:justify-start'>
-            <img src="FoodIcon.png" className='w-12 h-10 mr-3 dark:hidden' alt="Food Icon" />
-            <img src="yellow.png" className='w-19 h-14 mr-3 hidden dark:block' />
+            <img src="FoodIcon.png" className='w-12 h-10 mr-3' alt="Food Icon" />
             <div className='flex flex-col'>
                 <div className='flex leading-tight text-4xl font-black italic tracking-tighter'>
-                  <p className="animated-text-fill dark:hidden">Yam</p>
-                  <p className="animated-text-fill-dark hidden dark:block">Yam</p>
+                  <p className="animated-text-fill ">Yam</p>
                   <p className="animated-text-fill-1 ml-1">Yam</p>
                 </div>
               <p className='text-gray-500 text-sm font-bold tracking-widest uppercase'>Food Delivery</p>
@@ -135,13 +133,13 @@ export const Footer = () => {
 
 <div className='relative z-10 flex flex-col md:flex-row justify-between items-start p-10 gap-10'>
   <div className='flex flex-col gap-3'>
-      <p className='text-red-500 font-bold text-xl mb-2 tracking-tighter'>YAMYAM</p>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Home</a>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Contact us</a>
+      <p className='text-red-500 font-bold text-xl mb-2 tracking-tighter '>YAMYAM</p>
+      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium  '>Home</a>
+      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium'>Contact us</a>
       <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Delivery zone</a>
   </div>
     <div className='flex flex-col gap-3'>
-      <p className='text-red-500 font-bold text-xl mb-2 tracking-tighter dark:text-yellow-500'>MENU</p>
+      <p className='text-red-500 font-bold text-xl mb-2 tracking-tighter '>MENU</p>
       <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Home</a>
       <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Contact us</a>
       <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Delivery zone</a>
