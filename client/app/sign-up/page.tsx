@@ -11,7 +11,7 @@ export default function SignUpStep1() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/users/sign-up', {
+      const response = await fetch('https://food-ahv2.onrender.com/users/sign-up', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),

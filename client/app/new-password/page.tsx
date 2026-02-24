@@ -73,8 +73,7 @@ function NewPasswordContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Backend хаяг (Өөрийнхөөрөө солиорой)
-  const API_URL = "http://localhost:8000/users/reset-password";
+  const API_URL = "https://food-ahv2.onrender.com/users/reset-password";
 
   const handleResetPassword = async () => {
     const email = searchParams.get('email');
@@ -104,7 +103,6 @@ function NewPasswordContent() {
 
       if (response.ok) {
         toast.success("Нууц үг амжилттай солигдлоо");
-        // Амжилттай бол нэвтрэх хуудас руу шилжинэ
         router.push("/login");
       } else {
         toast.error(data.message || "Алдаа гарлаа");
@@ -150,7 +148,6 @@ function NewPasswordContent() {
   );
 }
 
-// useSearchParams ашиглаж байгаа тул Suspense зайлшгүй шаардлагатай
 export default function NewPassword() {
   return (
     <Suspense fallback={<div className="flex justify-center items-center min-h-screen">Loading...</div>}>

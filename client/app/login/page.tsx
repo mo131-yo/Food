@@ -10,7 +10,7 @@ export default function LoginPage() {
   const router = useRouter();
 
   // Хаягаа Backend-тэйгээ ижил болгох (Local эсвэл Render)
-  const API_URL = "http://localhost:8000/users/sign-in"; 
+  const API_URL = "https://food-ahv2.onrender.com/users/sign-in"; 
 
   const handleLogin = async (e: React.FormEvent) => {
     
@@ -30,16 +30,13 @@ export default function LoginPage() {
       const data = await res.json();
 
       if (res.ok) {
-        // Заримдаа data.user эсвэл data.data.user байдаг тул бүтцийг нь шалгаарай
         localStorage.setItem('accessToken', data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
         localStorage.setItem('user', JSON.stringify(data.user));
         
         toast.success("Тавтай морил!");
         
-        // Нүүр хуудас руу шилжих
         router.push('/');
-        // Хэсэг хугацааны дараа refresh хийх нь илүү найдвартай
         setTimeout(() => {
           router.refresh();
         }, 100);

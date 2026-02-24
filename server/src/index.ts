@@ -13,10 +13,21 @@ const app: Application = express();
 
 app.use(express.json());
 
+// app.use(cors({
+//   origin: ['https://food-qtjimk6ar-orgils-projects-94deebe5.vercel.app', 'http://localhost:3000'],
+//   methods: ["GET", "POST", "PATCH", "DELETE"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+//   credentials: true
+// }));
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://food-qtjimk6ar-orgils-projects-94deebe5.vercel.app',
+  /\.vercel\.app$/
+];
+
 app.use(cors({
-  origin: ['https://food-qtjimk6ar-orgils-projects-94deebe5.vercel.app', 'http://localhost:3000'],
+  origin: allowedOrigins,
   methods: ["GET", "POST", "PATCH", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
 

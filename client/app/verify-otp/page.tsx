@@ -10,7 +10,7 @@ function VerifyOtpContent() {
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
 
-  const API_URL = "http://localhost:8000/users/verify-otp";
+  const API_URL = "https://food-ahv2.onrender.com/users/verify-otp";
 
   const handleVerifyOtp = async () => {
     if (!otp || otp.length < 4) {
@@ -31,7 +31,6 @@ function VerifyOtpContent() {
 
       if (response.ok) {
         toast.success("Код баталгаажлаа");
-        // Амжилттай бол New Password хуудас руу үсрэнэ
         router.push(`/new-password?email=${email}&code=${otp}`);
       } else {
         toast.error(data.message || "Код буруу эсвэл хугацаа дууссан");
@@ -84,8 +83,6 @@ function VerifyOtpContent() {
     </div>
   );
 }
-
-// Next.js useSearchParams() ашиглаж байгаа үед Suspense-д боох шаардлагатай байдаг
 export default function VerifyOtp() {
   return (
     <Suspense fallback={<div className="flex justify-center items-center min-h-screen">Loading...</div>}>

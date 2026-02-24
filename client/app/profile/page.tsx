@@ -121,14 +121,13 @@ export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  // Backend router чинь /users байгаа тул хаягаа бүтэн бичнэ
-  const API_URL = "http://localhost:8000/users"; // Өөрийн серверийн хаягийг энд бичээрэй
+  const API_URL = "https://food-ahv2.onrender.com/users";
 
   const handlePasswordResetRequest = async () => {
     if (isLoading) return;
     
     setIsLoading(true);
-    toast.dismiss(); // Өмнөх бүх toast-г арилгана
+    toast.dismiss();
 
     try {
       const response = await fetch(`${API_URL}/reset-password-request`, {
@@ -141,7 +140,6 @@ export default function ProfilePage() {
 
       if (response.ok) {
         toast.success("Баталгаажуулах код имэйл рүү илгээгдлээ");
-        // verify-otp хуудас руу үсрэх
         router.push(`/verify-otp?email=${user?.email}`);
       } else {
         toast.error(data.message || "Хүсэлт илгээхэд алдаа гарлаа");

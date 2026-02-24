@@ -10,7 +10,7 @@ export default function FoodListPage() {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const response = await fetch('http://localhost:8000/foods/get-all-food');
+        const response = await fetch('https://food-ahv2.onrender.com/foods/get-all-food');
         const result = await response.json();
 
         if (response.ok) {

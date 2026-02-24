@@ -35,7 +35,7 @@ const handleCheckout = async () => {
 
   try {
     const foods = cart.map(item => ({
-      foodId: item.id, // Backend-ийн хүлээж авах нэр мөн эсэхийг шалга
+      foodId: item.id,
       quantity: item.quantity
     }));
 
@@ -45,7 +45,6 @@ const handleCheckout = async () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      // Хэрэв Backend чинь totalPrice нэхэж байвал энд нэмж өгнө
       body: JSON.stringify({ foods, address, totalPrice: total }),
     });
 
@@ -70,7 +69,7 @@ const handleCheckout = async () => {
 const fetchOrders = async () => {
   const token = localStorage.getItem('accessToken');
   const user = JSON.parse(localStorage.getItem('user') || '{}');
-  const userId = user._id || user.id; // Хоёр хувилбарыг шалгана
+  const userId = user._id || user.id;
 
   if (!userId || !token) return;
 
@@ -84,7 +83,6 @@ const fetchOrders = async () => {
 
     const result = await response.json();
     if (response.ok) {
-      // Ирж буй өгөгдөл result.data эсвэл result дотор байгааг шалгах
       setOrders(result.data || result);
     }
   } catch (error) {
