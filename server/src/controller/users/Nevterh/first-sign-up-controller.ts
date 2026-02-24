@@ -19,11 +19,11 @@ export const firstSignUp = async (req: Request, res: Response) => {
             { expiresIn: "15m" } 
         );
 
-        const baseUrl = process.env.BACKEND_API || "http://localhost:8000";
-
         const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
         
-        const publicUrl= baseUrl || frontendUrl
+        const baseUrl = process.env.BACKEND_API || "http://localhost:8000";
+        
+        const publicUrl= frontendUrl || baseUrl
 
         const verificationLink = `${publicUrl}/verify-email?token=${token}`;
         
