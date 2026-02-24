@@ -1,61 +1,3 @@
-// // verify-otp/page.tsx
-// "use client";
-// import { useState } from 'react';
-// import { useRouter, useSearchParams } from 'next/navigation';
-// import axios from 'axios';
-// import toast from 'react-hot-toast';
-
-// export default function VerifyOtp() {
-//   const [otp, setOtp] = useState("");
-//   const router = useRouter();
-//   const searchParams = useSearchParams();
-//   const email = searchParams.get('email');
-
-// // verify-otp/page.tsx
-// const handleVerifyOtp = async () => {
-//   toast.dismiss();
-  
-//   try {
-//     const response = await fetch("/api/verify-otp", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ email, verifyCode: otp }),
-//     });
-
-//     const data = await response.json();
-
-//     if (response.ok && data.success) {
-//       toast.success("Код баталгаажлаа");
-//       router.push(`/new-password?email=${email}&code=${otp}`);
-//     } else {
-//       toast.error(data.message || "Код буруу эсвэл хугацаа дууссан");
-//     }
-//   } catch (error) {
-//     toast.error("Алдаа гарлаа");
-//   }
-// };
-
-//   return (
-//     <div className="flex flex-col items-center justify-center min-h-screen">
-//       <div className="bg-white p-8 rounded-3xl shadow-xl w-full max-w-sm border">
-//         <h2 className="text-xl font-bold mb-4 text-center">Баталгаажуулах код</h2>
-//         <input 
-//           type="text" 
-//           placeholder="000000"
-//           className="w-full p-4 border rounded-2xl mb-4 text-center text-2xl tracking-widest"
-//           onChange={(e) => setOtp(e.target.value)}
-//         />
-//         <button onClick={handleVerifyOtp} className="w-full bg-black text-white p-4 rounded-2xl font-bold">
-//           Үргэлжлүүлэх
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
-// verify-otp/page.tsx
 "use client";
 import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -68,7 +10,6 @@ function VerifyOtpContent() {
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
 
-  // Backend хаяг (Өөрийнхөөрөө солиорой)
   const API_URL = "http://localhost:8000/users/verify-otp";
 
   const handleVerifyOtp = async () => {

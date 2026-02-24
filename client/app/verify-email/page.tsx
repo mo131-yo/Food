@@ -14,7 +14,7 @@ function VerifyEmailForm() {
 
 const handleFinish = async (e: React.FormEvent) => {
   e.preventDefault();
-  if (password !== confirmPassword) return toast.error("Нууц үг зөрүүтэй байна!");
+  if (password !== confirmPassword) return toast.error("Nuuts ug taarahgui bn");
 
   setLoading(true);
   try {

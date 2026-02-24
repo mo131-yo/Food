@@ -18,9 +18,11 @@ export const firstSignUp = async (req: Request, res: Response) => {
             process.env.JWT_SECRET || "hello", 
             { expiresIn: "15m" } 
         );
-        
-        const verificationLink = `${process.env.FRONTEND_URL || "http://localhost:8000" || process.env.BACKEND_API}/verify-email?token=${token}`;
 
+        const baseUrl = process.env.BACKEND_API || "http://localhost:8000";
+
+        const verificationLink = `${baseUrl}/verify-email?token=${token}`;
+        
         await verifyUserEmail(email, verificationLink);
 
         res.status(200).json({

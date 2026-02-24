@@ -21,19 +21,20 @@ export const Header = () => {
     }
   }, []);
 
-  const handleIconClick = () => {
-    if (user) {
-      router.push('/profile');
-    } else {
-      router.push('/login');
-    }
-  };
+const handleIconClick = () => {
+  if (user) {
+    router.push('/profile');
+  } else if (!user) { 
+    router.push('/sign-up');
+  } else {
+    router.push('/login');
+  }
+};
 
   return (
     <div className='flex flex-col'>
       <header className='fixed top-0 left-0 w-full bg-black/60 dark:bg-black backdrop-blur-md h-20 flex items-center justify-between px-10 z-50 shadow-lg'>
         
-        {/* Лого хэсэг */}
         <div className="flex items-center gap-4 cursor-pointer" onClick={() => router.push('/')}> 
           <div className='flex items-center ml-4'>
             <img src="FoodIcon.png" className='w-11 h-9 mr-3' alt="Logo" />
@@ -49,7 +50,7 @@ export const Header = () => {
 
         <div className='flex gap-4 items-center'>
           <Link href="/cart" className="relative group w-10 h-10 rounded-full bg-white flex items-center justify-center transition-all duration-300 hover:bg-red-600 dark:hover:bg-yellow-600">
-            <div className="text-[#595959] text-black text-2xl transition-all duration-500 group-hover:rotate-360 group-hover:text-white">
+            <div className="text-[#595959] text-2xl transition-all duration-500 group-hover:rotate-360 group-hover:text-white">
               <CiShoppingCart />
             </div>
             {totalItems > 0 && (

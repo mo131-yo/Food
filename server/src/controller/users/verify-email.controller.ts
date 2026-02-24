@@ -81,7 +81,7 @@ export const verifyEmail = async (req: Request, res: Response) => {
         const { token } = req.query; 
 
         if (!token) {
-            return res.status(400).json({ message: "Token байхгүй байна" });
+            return res.status(400).json({ message: "Token bhq bn" });
         }
         jwt.verify(token as string, process.env.JWT_SECRET || "hello");
         const frontendUrl = `${process.env.FRONTEND_URL || "http://localhost:8000" || process.env.BACKEND_API}/verify-email?token=${token}`;
@@ -93,10 +93,3 @@ export const verifyEmail = async (req: Request, res: Response) => {
         `);
     }
 };
-
-
-// <div style="text-align:center; padding-top:50px; font-family:sans-serif;">
-//                 <h1 style="color:red;">Verify Link huchingui</h1>
-//                 <p>Linkiin hugatsaa duussan bn. Ta dahin burtguuleh huselt ilgeene uu</p>
-//                 <a href="${process.env.FRONTEND_URL}/sign-up">Butsah</a>
-//             </div>
