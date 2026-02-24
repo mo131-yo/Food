@@ -21,10 +21,13 @@ export const firstSignUp = async (req: Request, res: Response) => {
 
         const baseUrl = process.env.BACKEND_API || "http://localhost:8000";
 
-        const verificationLink = `${baseUrl}/verify-email?token=${token}`;
+        const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
+        
+        const publicUrl= baseUrl || frontendUrl
+
+        const verificationLink = `${publicUrl}/verify-email?token=${token}`;
         
         await verifyUserEmail(email, verificationLink);
-
         res.status(200).json({
             message: "Batalgaajuulah mail yvuulsan. Mail ee shalgaad nuuts ugee tohiruulna uu", token
         });
