@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Header } from './components/Header';
-import { Footer } from "./components/Footer";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from 'react-hot-toast';  
@@ -40,11 +38,9 @@ export default function RootLayout({
           <AuthProvider>
          <CartProvider>
             <Toaster position="top-center" />
-            <Header />
             <main className="min-h-screen">
               {children}
             </main>
-            <Footer />
           </CartProvider>
           </AuthProvider>
         </ThemeProvider>

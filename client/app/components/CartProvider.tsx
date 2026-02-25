@@ -8,7 +8,7 @@ interface CartItem {
   price: number;
   image: string;
   quantity: number;
-  ingredients: ReactNode;
+  ingredients: string;
 }
 
 interface CartContextType {
@@ -35,6 +35,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       return [...prev, newItem];
     });
   };
+  
   
   const updateQuantity = (id: string, delta: number) => {
     setCart((prev) =>

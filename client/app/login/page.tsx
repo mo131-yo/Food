@@ -9,7 +9,6 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  // Хаягаа Backend-тэйгээ ижил болгох (Local эсвэл Render)
   const API_URL = "https://food-ahv2.onrender.com/users/sign-in"; 
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -35,8 +34,8 @@ export default function LoginPage() {
         localStorage.setItem('user', JSON.stringify(data.user));
         
         toast.success("Тавтай морил!");
+        router.push('/foods '); 
         
-        router.push('/');
         setTimeout(() => {
           router.refresh();
         }, 100);

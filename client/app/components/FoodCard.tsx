@@ -25,13 +25,13 @@ const FoodCard = ({ foods, id }: FoodProps) => {
 
 const handleAddToCart = (qty: number) => {
     addToCart({
-      id: id,
+     id: id,
+      _id: id,
       name: foods.name,
       price: foods.price,
       image: foods.image,
       quantity: qty,
       ingredients: foods.ingredients?.join(", "),
-      _id: ''
     });
     
     toast.success(`${foods.name} сагслагдлаа!`, {
@@ -40,11 +40,11 @@ const handleAddToCart = (qty: number) => {
   };
 
   return (
-    <>
+    <div>
       {/* Food Card */}
       <div 
         onClick={() => setIsModalOpen(true)}
-        className="group border border-gray-100 rounded-3xl p-4 w-70 shadow-sm hover:shadow-xl bg-white transition-all cursor-pointer"
+        className="group border border-gray-100 rounded-3xl p-4 w-70 shadow-sm hover:shadow-xl bg-white transition-all cursor-pointer dark:bg-gray-200"
       >
         <div className="overflow-hidden rounded-2xl mb-4">
           <img 
@@ -73,7 +73,7 @@ const handleAddToCart = (qty: number) => {
         imageUrl={imageUrl}
         onAddToCart={handleAddToCart}
       />
-    </>
+    </div>
   );
 };
 

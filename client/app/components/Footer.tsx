@@ -3,6 +3,7 @@ import Marquee from "react-fast-marquee";
 import { FaFacebook } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
+import JellyText from './JellyText';
 
 const word = "Fresh fast delivered "
 const repeatCount = 10;
@@ -127,26 +128,26 @@ export const Footer = () => {
                   <p className="animated-text-fill ">Yam</p>
                   <p className="animated-text-fill-1 ml-1">Yam</p>
                 </div>
-              <p className='text-gray-500 text-sm font-bold tracking-widest uppercase'>Food Delivery</p>
+              <JellyText text="Food Delivery" flavorIndex={3} className='text-gray-500 text-sm font-bold tracking-widest uppercase'/>
             </div>
           </div>
 
 <div className='relative z-10 flex flex-col md:flex-row justify-between items-start p-10 gap-10'>
-  <div className='flex flex-col gap-3'>
-      <p className='text-red-500 font-bold text-xl mb-2 tracking-tighter '>YAMYAM</p>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium  '>Home</a>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium'>Contact us</a>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Delivery zone</a>
-  </div>
     <div className='flex flex-col gap-3'>
-      <p className='text-red-500 font-bold text-xl mb-2 tracking-tighter '>MENU</p>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Home</a>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Contact us</a>
-      <a href="#" className='text-black dark:text-white hover:text-red-500 transition-colors duration-300 font-medium '>Delivery zone</a>
+        <JellyText text="YAMYAM" flavorIndex={0} className="text-red-500 font-bold text-xl mb-2 tracking-tighter" />
+        <JellyText text="Home" flavorIndex={3} className="font-medium hover:text-red-500 transition-colors" />
+        <JellyText text="Contact us" flavorIndex={3} className="font-medium hover:text-red-500 transition-colors" />
+        <JellyText text="Delivery zone" flavorIndex={3} className="font-medium hover:text-red-500 transition-colors" />
+    </div>
+    <div className='flex flex-col gap-3'>
+      <JellyText text="MENU" className="text-red-500 font-bold text-xl mb-2 tracking-tighter" />
+      <JellyText text="Home" flavorIndex={3} className="font-medium hover:text-red-500 transition-colors" />
+      <JellyText text="Contact us" flavorIndex={3} className="font-medium hover:text-red-500 transition-colors" />
+      <JellyText text="Delivery zone" flavorIndex={3} className="font-medium hover:text-red-500 transition-colors" />
   </div>
 
   <div className='flex flex-col gap-4 items-center md:items-end'>
-    <h4 className='text-black dark:text-white font-bold uppercase text-xs tracking-[0.2em]'>Follow Us</h4>
+    <JellyText text="Food Delivery" flavorIndex={3} className="font-bold text-black text-xs uppercase tracking-[0.2em] dark:text-white hover:text-gray-700 transition-colors" />
     
     <div className='flex gap-4'>
       <a href="#" className="social-icon-box w-12 h-12 rounded-full bg-gray-300 dark:bg-white flex items-center justify-center transition-all duration-300 hover:bg-[#3B5998] group">
