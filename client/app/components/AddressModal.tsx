@@ -1,5 +1,4 @@
 "use client";
-import React, { useState } from 'react';
 
 export const AddressModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
   if (!isOpen) return null;
@@ -10,7 +9,6 @@ export const AddressModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: ()
         <button onClick={onClose} className="absolute top-4 right-4 text-gray-400">✕</button>
         
         <h2 className="text-xl font-bold mb-4">Please write your delivery address!</h2>
-        
         <textarea 
           placeholder="Please share your complete address"
           className="w-full border rounded-lg p-3 h-24 focus:ring-2 focus:ring-red-500 outline-none"

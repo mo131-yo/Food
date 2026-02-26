@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import RobotDance from '../components/Robot';
 
 export default function SignUpStep1() {
   const [email, setEmail] = useState("");
@@ -32,8 +33,11 @@ export default function SignUpStep1() {
     }
   };
 
-    if (loading) return <div className="p-10 text-center">Server asaj baina tur huleene uu</div>
-
+    if (loading) return 
+   <div className="p-10 text-center">Server asaj baina tur huleene uu
+      <RobotDance/>
+    </div>
+ 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <form onSubmit={handleSubmit} className="p-10 bg-white shadow-2xl rounded-4xl w-96 border border-gray-100">

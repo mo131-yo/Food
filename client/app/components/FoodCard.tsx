@@ -41,7 +41,6 @@ const handleAddToCart = (qty: number) => {
 
   return (
     <div>
-      {/* Food Card */}
       <div 
         onClick={() => setIsModalOpen(true)}
         className="group border border-gray-100 rounded-3xl p-4 w-70 shadow-sm hover:shadow-xl bg-white transition-all cursor-pointer dark:bg-gray-200"

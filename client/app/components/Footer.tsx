@@ -110,7 +110,7 @@ export const Footer = () => {
           `}
         </style>
          
-        <div className='bg-red-500 dark:bg-yellow-500 w-full py-6 z-20'>
+        <div className='bg-red-500 w-full py-6 z-20'>
           <Marquee speed={100} gradient={false}>
             {repeatWord.map((item, index) => (
               <h2 key={index} className='text-white font-bold text-6xl md:text-8xl mx-10'> 
@@ -166,7 +166,7 @@ export const Footer = () => {
   </div>
 </div>
 
-<div className='border-t border-white/30 mr-20 ml-20 dark:border-white'></div>
+<div className='border-t border-black/50 mr-0 ml-0 dark:border-white'></div>
 
           <div className="absolute bottom-0 left-0 w-full h-66.5 pointer-events-none">
               <div className="absolute bottom-62.5 w-[288px] h-40 animate-ongots bg-no-repeat bg-contain z-0" />

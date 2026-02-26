@@ -4,7 +4,6 @@ import FoodCard from '@/app/components/FoodCard';
 import {Header} from "@/app/components/Header";
 import {Footer} from "@/app/components/Footer"
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import RobotDance from '../components/Robot';
 
 export default function FoodListPage() {
   const [foods, setFoods] = useState<any[]>([]);
@@ -30,20 +29,13 @@ export default function FoodListPage() {
     fetchFoods();
   }, []);
 
-  if (loading) return <div className="p-10 text-center animate-spin">Loading ...
-  <AiOutlineLoading3Quarters />
-  <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
-      <div style={{ position: 'absolute', zIndex: 10, color: 'white', padding: '20px' }}>
-        <h1>Миний Робот Бүжигчид</h1>
-        <p>Роботуудыг чирж үзээрэй!</p>
-      </div>
-
-      <RobotDance />
-    </div></div>
+  if (loading) return <div className="p-10 text-center">Loading ...
+  {/* <AiOutlineLoading3Quarters /> */}
+    </div>
 
   return (
-    <div className="flex flex-wrap gap-5 p-5 bg-gray-50 min-h-screen">
-        <Header />
+    <div className="flex flex-wrap gap-5 p-5 bg-gray-50 min-h-screen bg-white dark:bg-black">
+        <Header />  
       {foods.map((food) => (
         <FoodCard 
           key={food._id}

@@ -69,7 +69,6 @@ const FoodDetailModal = ({ isOpen, onClose, food, imageUrl, onAddToCart }: Modal
                 </button>
               </div>
             </div>
-
             <button 
               onClick={() => {
                 onAddToCart(quantity);

@@ -4,6 +4,7 @@ import { useCart } from '../components/CartProvider';
 import { useRouter } from 'next/navigation';
 import { IoCloseOutline } from "react-icons/io5";
 import toast from 'react-hot-toast';
+import RobotDance from '../components/Robot';
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
@@ -96,7 +97,7 @@ const fetchOrders = async () => {
   return (
     <div className="fixed inset-0 z-100 flex justify-end bg-black/40 backdrop-blur-sm">
       <div className="w-full max-w-md bg-white dark:bg-zinc-900 h-screen shadow-2xl p-6 flex flex-col">
-        
+
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-black flex items-center gap-2 dark:text-white">
             <span className="text-2xl">🛒</span> Order detail
@@ -156,7 +157,7 @@ const fetchOrders = async () => {
                   onChange={(e) => setAddress(e.target.value)}
                   placeholder="Hurguuleh haygaa bichne uu"
                   className="w-full p-4 bg-gray-50 dark:bg-zinc-800 border dark:border-zinc-700 rounded-2xl text-sm h-24 focus:ring-2 focus:ring-red-500 outline-none dark:text-white"
-                />
+                /><RobotDance/>
               </div>
             </div>
 
