@@ -7,6 +7,7 @@ import { ThemeToggle } from "./Theme"
 import { useState, useEffect } from 'react'
 import { useCart } from './CartProvider'
 import { useRouter } from 'next/navigation';
+import { Toast } from '@/app/components/Toast';
 
 export const Header = () => {
   const [user, setUser] = useState<{ email: string } | null>(null);
@@ -33,8 +34,8 @@ const handleIconClick = () => {
 
   return (
     <div className='flex flex-col'>
+        <Toast/>
       <header className='fixed top-0 left-0 w-full bg-black/60 dark:bg-black backdrop-blur-md h-20 flex items-center justify-between px-10 z-50 shadow-lg'>
-        
         <div className="flex items-center gap-4 cursor-pointer" onClick={() => router.push('/')}> 
           <div className='flex items-center ml-4'>
             <img src="FoodIcon.png" className='w-11 h-9 mr-3' alt="Logo" />

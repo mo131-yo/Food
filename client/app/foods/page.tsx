@@ -29,8 +29,11 @@ export default function FoodListPage() {
     fetchFoods();
   }, []);
 
-  if (loading) return <div className="p-10 text-center">Loading ...
-  {/* <AiOutlineLoading3Quarters /> */}
+  if (loading) return <div className="p-10 ">
+    <p className='text-center'>Loading ...</p>
+    <div className='flex justify-center items-center animate-spin'>
+      <AiOutlineLoading3Quarters />
+    </div>
     </div>
 
   return (
