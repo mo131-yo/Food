@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import FoodCard from '@/app/components/FoodCard';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
+import {Header} from "@/app/components/Header";
+import {Footer} from "@/app/components/Footer"
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function FoodListPage() {
   const [foods, setFoods] = useState<any[]>([]);
@@ -28,10 +29,11 @@ export default function FoodListPage() {
     fetchFoods();
   }, []);
 
-  if (loading) return <div className="p-10 text-center">Server asaj baina tur huleene uu</div>
+  if (loading) return <div className="p-10 text-center animate-spin">Loading ...
+  <AiOutlineLoading3Quarters /></div>
 
   return (
-    <div className="flex flex-wrap gap-5 p-5 bg-gray-50 min-h-screen dark:bg-black">
+    <div className="flex flex-wrap gap-5 p-5 bg-gray-50 min-h-screen">
         <Header />
       {foods.map((food) => (
         <FoodCard 
@@ -43,7 +45,7 @@ export default function FoodListPage() {
             ingredients: food.ingredients,
           }} id={''}        />
       ))}
-      <Footer />
+       <Footer />
     </div>
   );
 }

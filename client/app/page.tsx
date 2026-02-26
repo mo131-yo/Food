@@ -52,7 +52,7 @@ export default function SignUpStep1() {
             loading ? 'bg-gray-400' : 'bg-[#FF3838] hover:bg-red-600'
           }`}
         >
-          {loading ? "Ilgeej bn" : "Urgeljluuleh"}
+          {loading ? "Sending" : "Contining"}
         </button>
       </form>
     </div>
