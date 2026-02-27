@@ -34,7 +34,10 @@ export default function SignUpStep1() {
   };
 
   if (loading) return <div className="p-10 text-center">Server asaj baina tur huleene uu
-  <RobotDance/> </div>
+  <div className='flex justify-center items-center'>
+    <RobotDance/> 
+  </div>
+  </div>
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">

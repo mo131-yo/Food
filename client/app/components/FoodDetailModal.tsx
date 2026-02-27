@@ -25,7 +25,6 @@ const FoodDetailModal = ({ isOpen, onClose, food, imageUrl, onAddToCart }: Modal
           <MdCancel />
         </button> 
 
-        {/* Зүүн тал - Зураг */}
         <div className="w-full md:w-1/2 h-64 md:h-auto">
           <img 
             src={imageUrl} 
@@ -34,7 +33,6 @@ const FoodDetailModal = ({ isOpen, onClose, food, imageUrl, onAddToCart }: Modal
           />
         </div>
 
-        {/* Баруун тал - Мэдээлэл */}
         <div className="flex w-full md:w-1/2 flex-col justify-between p-8 md:p-10">
           <div>
             <h2 className="mb-4 text-3xl font-bold text-red-500">{food.name}</h2>
@@ -52,7 +50,6 @@ const FoodDetailModal = ({ isOpen, onClose, food, imageUrl, onAddToCart }: Modal
                 </p>
               </div>
               
-              {/* Тоо хэмжээ тохируулах */}
               <div className="flex items-center gap-4">
                 <button 
                   onClick={() => quantity > 1 && setQuantity(quantity - 1)}

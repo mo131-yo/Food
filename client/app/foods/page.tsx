@@ -37,7 +37,7 @@ export default function FoodListPage() {
     </div>
 
   return (
-    <div className="flex flex-wrap gap-5 p-5 bg-gray-50 min-h-screen bg-white dark:bg-black">
+    <div className="flex flex-wrap gap-5 p-5 bg-gray-50 min-h-screen dark:bg-black">
         <Header />  
       {foods.map((food) => (
         <FoodCard 

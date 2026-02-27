@@ -7,7 +7,6 @@
       const canvas = canvasRef.current;
       if (!canvas) return;
 
-      // Canvas-ийн хэмжээг тохируулах
       const resizeCanvas = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -22,7 +21,6 @@
       let ground = 1.0;
       const dancers = [];
 
-      // --- Robot Logic (Таны кодоос хөрвүүлсэн хэсэг) ---
       const struct = {
         points: [
           { x: 0, y: -4, f(s, d) { this.y -= 0.01 * s * ts; } },
@@ -173,7 +171,6 @@
         requestAnimationFrame(run);
       };
 
-      // Events
       const handlePointer = (e, type) => {
         const rect = canvas.getBoundingClientRect();
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -217,8 +214,8 @@
         ref={canvasRef} 
         style={{ 
           display: 'block', 
-          width: '10vw', 
-          height: '10vh', 
+          width: '100vw', 
+          height: '100vh', 
           cursor: 'pointer' 
         }} 
       />

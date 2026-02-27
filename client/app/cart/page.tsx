@@ -16,7 +16,6 @@ export default function CartPage() {
 
   // const API_URL = "http://localhost:8000";
 
-  // CartPage.tsx-ийн дээд хэсэгт
 const API_URL = "https://food-ahv2.onrender.com";
 
 const handleCheckout = async () => {

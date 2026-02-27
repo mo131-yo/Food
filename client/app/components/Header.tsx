@@ -34,7 +34,7 @@ const handleIconClick = () => {
 
   return (
     <div className='flex flex-col'>
-        <Toast/>
+        {/* <Toast/> */}
       <header className='fixed top-0 left-0 w-full bg-black/60 dark:bg-black backdrop-blur-md h-20 flex items-center justify-between px-10 z-50 shadow-lg'>
         <div className="flex items-center gap-4 cursor-pointer" onClick={() => router.push('/')}> 
           <div className='flex items-center ml-4'>
