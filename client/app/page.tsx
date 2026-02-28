@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import RobotDance from './components/Robot';
+// import AnimatedToaster from './components/AnimatedToaster';
 
 export default function SignUpStep1() {
   const [email, setEmail] = useState("");
@@ -40,9 +41,10 @@ export default function SignUpStep1() {
   </div>
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <form onSubmit={handleSubmit} className="p-10 bg-white shadow-2xl rounded-4xl w-96 border border-gray-100">
-        <h1 className="text-2xl font-black mb-6 text-center">Sign-up</h1>
+    <div className="flex flex-col items-center justify-center max-h-screen bg-gray-100">
+      <form onSubmit={handleSubmit} className="p-10 bg-white shadow-2xl rounded-4xl w-196 h-190 border border-gray-100">
+        {/* <AnimatedToaster/> */}
+        <h1 className="text-2xl text-black dark:text-white mb-6 text-center">Sign-up</h1>
         <input 
           type="email" 
           placeholder="И-мэйл хаяг"

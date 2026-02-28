@@ -25,7 +25,6 @@
   color: var(--c);
   font-variation-settings: "wght" var(--base-wght), "wdth" var(--base-wdth);
   transition: color 0.3s;
-  /* Царцаамаг мэт сүүдэр */
   text-shadow: 
     -0.005em -0.005em 0 oklch(100% 0 0 / 0.4),
     0.005em 0.01em 0 oklch(from var(--cs) l c h / 0.3), 

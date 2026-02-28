@@ -5,12 +5,12 @@ import { FoodModel } from "../../models/food.model";
 
 export const createFoodItem = async (req: Request, res: Response) => {
     try {
-        const { foodName, foodPrice, foodImage, category, ingredients } = req.body;
+        const { foodName, price, image, category, ingredients } = req.body;
 
         const newFood = await FoodModel.create({
             foodName,
-            foodPrice,
-            foodImage,
+            foodPrice: price,
+            foodImage:image,
             category,
             ingredients
         });

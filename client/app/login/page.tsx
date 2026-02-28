@@ -1,4 +1,3 @@
-// LoginPage.tsx
 "use client";
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';

@@ -19,17 +19,21 @@ app.use(express.json());
 //   allowedHeaders: ["Content-Type", "Authorization"],
 //   credentials: true
 // }));
-const allowedOrigins = [
-  'http://localhost:3000',
-  'https://food-qtjimk6ar-orgils-projects-94deebe5.vercel.app',
-  /\.vercel\.app$/
-];
 
-app.use(cors({
-  origin: allowedOrigins,
-  methods: ["GET", "POST", "PATCH", "DELETE"],
-  credentials: true
-}));
+app.use(cors());
+app.use(express.json());
+
+// const allowedOrigins = [
+//   'http://localhost:3000',
+//   'https://food-qtjimk6ar-orgils-projects-94deebe5.vercel.app',
+//   /\.vercel\.app$/
+// ];
+
+// app.use(cors({
+//   origin: allowedOrigins,
+//   methods: ["GET", "POST", "PATCH", "DELETE"],
+//   credentials: true
+// }));
 
 
 app.get("/", (req, res) => {

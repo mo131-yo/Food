@@ -11,9 +11,10 @@ foodCategoryRouter.post("/create-food-category", authentication, authorization([
 
 foodCategoryRouter.get("/get-category/:categoryId", authentication, authorization([UserRole.ADMIN]),  getFoodCategoryById);
 
-foodCategoryRouter.get("/get-all-foods", authentication, authorization([UserRole.USER]),  getAllFoodCategory);
+foodCategoryRouter.get("/get-all-foods",  getAllFoodCategory);
 
 foodCategoryRouter.patch("/update-category/:categoryId", authentication, authorization([UserRole.ADMIN]),  updateCategory);
 
 foodCategoryRouter.delete("/delete-category/:categoryId",authentication , authorization([UserRole.ADMIN]), deleteCategory)
 
+//  authentication, authorization([UserRole.USER]),
