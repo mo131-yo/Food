@@ -14,10 +14,12 @@ export const authentication = (req: Request, res: Response, next: NextFunction) 
   const token = authHeader.split(" ")[1];
   
   try {
-    const secret = process.env.JWT_SECRET as string;
-    
+    const secret = process.env.ACCESS_TOKEN_SECRET || process.env.JWT_SECRET || "hello";
+
+    console.log("Backend-ийн ашиглаж буй Secret:", secret);
+
     const decoded = jwt.verify(token as string, secret);
-    (req as any).user = decoded; 
+    (req as any).user = decoded;  
     next();
   } catch (error: any) {
     res.status(401).json({ 

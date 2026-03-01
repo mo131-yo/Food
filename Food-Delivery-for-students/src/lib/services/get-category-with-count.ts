@@ -5,30 +5,19 @@
 // };
 
 
+import { api } from "../axios-instance";
 
-import axios from "axios";
-import { CategoryWithCount } from "@/components/admin/food-menu/DishesCategory";
-
-const api = axios.create({
-  baseURL: "http://localhost:8000",
-});
-
-export const fetchCategoriesWithCount = async (): Promise<{
-  data: CategoryWithCount[];
-  error: boolean;
-}> => {
+export const fetchCategoriesWithCount = async () => {
   try {
-    const response = await api.get("/foods-category/get-all-foods"); 
-    
-    const categories = response.data.data.map((cat: any) => ({
+    const response = await api.get("/foods-category/with-count");
+
+    const data = response.data.map((cat: any) => ({
       _id: cat._id,
       categoryName: cat.categoryName,
-      count: cat.foodCount || 0, 
+      count: Number(cat.count) || 0,
     }));
-
-    return { data: categories, error: false };
+    return { data, error: false };  
   } catch (error) {
-    console.error("Fetch Categories With Count Error:", error);
     return { data: [], error: true };
   }
 };

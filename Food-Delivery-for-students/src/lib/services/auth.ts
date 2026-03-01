@@ -1,12 +1,8 @@
 import axios from "axios";
 
 import {
-  LoginResponse,
-  PasswordResetResponse,
   PasswordResetTypes,
   SendPasswordResetMail,
-  SignUpResponse,
-  SignUpTypes,
 } from "@/constants/auth";
 
 const api = axios.create({

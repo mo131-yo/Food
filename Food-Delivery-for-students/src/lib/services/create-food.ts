@@ -20,19 +20,29 @@ const api = axios.create({
 
 type Food = {
   foodName: string;
-  price: number;
-  image: string;
+  foodPrice: number;
+  foodImage: string;
   ingredients: string;
   category: string;
 };
 
+
 export const createFood = async (payload: Food) => {
+  const token = localStorage.getItem("token");
+  console.log("Одоо ашиглаж буй токен:", token);
+
+  if (!token) {
+    throw new Error("Токен олдсонгүй, дахин нэвтэрнэ үү");
+  }
+
   try {
-    const response = await api.post("/food", payload);
-    
+    const response = await api.post("/foods/create-food-item", payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error: any) {
-    console.error("Axios Error:", error.response?.data || error.message);
     throw error;
   }
 };

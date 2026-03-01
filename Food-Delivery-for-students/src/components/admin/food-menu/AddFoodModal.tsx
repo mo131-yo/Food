@@ -4,6 +4,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogTitle,
   DialogTrigger,
@@ -22,8 +23,8 @@ type AddFoodModalProps = {
 
 type FoodInfo = {
   foodName: string;
-  price: string;
-  image: string;
+  foodPrice: string;
+  foodImage: string;
   ingredients: string;
   category: string;
 };
@@ -36,8 +37,8 @@ export const AddFoodModal = ({
 
   const [foodInfo, setFoodInfo] = useState<FoodInfo>({
     foodName: "",
-    price: "",
-    image: "",
+    foodPrice: "",
+    foodImage: "",
     ingredients: "",
     category: categoryId,
   });
@@ -53,27 +54,73 @@ export const AddFoodModal = ({
     }));
   };
 
-  const handleCreateFood = async () => {
-    const foodData = {
-      ...foodInfo,
-      price: parseFloat(foodInfo.price) || 0,
-    };
 
-    if (!uploadedImage) {
-      return await createFood(foodData);
+const handleCreateFood = async () => {
+  try {
+    let imageUrl = "";
+    if (uploadedImage) {
+      const responseUrl = await uploadImage(uploadedImage);
+      imageUrl = responseUrl || "";
     }
 
-    const imageUrl = await uploadImage(uploadedImage);
-    await createFood({ ...foodData, image: imageUrl });
+    // const foodData = {
+    //   foodName: foodInfo.foodName || "Untitled",
+    //   foodPrice: Number(foodInfo.foodPrice) || 0,
+    //   ingredients: foodInfo.ingredients || "",
+    //   category: categoryId, 
+    //   foodImage: imageUrl || foodInfo.foodImage || "", 
+    // };
+
+    const foodData = {
+    foodName: foodInfo.foodName,
+    foodPrice: Number(foodInfo.foodPrice),
+    foodImage: imageUrl,
+    category: categoryId,
+    ingredients: foodInfo.ingredients,
+   };
+
+    await createFood(foodData);
 
     setFoodInfo({
       foodName: "",
-      price: "",
-      image: "",
+      foodPrice: "",
+      foodImage: "",
       ingredients: "",
       category: categoryId,
     });
-  };
+    setUploadedImage(undefined);
+    
+  } catch (error) {
+    console.error("Food creation failed:", error);
+    alert("Хоол нэмэхэд алдаа гарлаа");
+  }
+};
+
+  
+  // const handleCreateFood = async () => {
+  //   const foodData = {
+  //     foodName: foodInfo.foodName,
+  //     foodPrice: Number(foodInfo.foodPrice) || 0, 
+  //     ingredients: foodInfo.ingredients || "",
+  //     category: categoryId,
+  //     foodImage: foodInfo.foodImage || "",
+  //   };
+
+  //   if (!uploadedImage) {
+  //     return await createFood(foodData);
+  //   }
+
+  //   const imageUrl = await uploadImage(uploadedImage);
+  //   await createFood({ ...foodData, foodImage: imageUrl });
+
+  //   setFoodInfo({
+  //     foodName: "",
+  //     foodPrice: "",
+  //     foodImage: "",
+  //     ingredients: "",
+  //     category: categoryId,
+  //   });
+  // };
 
   const onFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
@@ -95,6 +142,9 @@ export const AddFoodModal = ({
       <DialogContent className="sm:max-w-[425px] flex flex-col gap-6">
         <div className="flex items-center justify-between mb-4">
           <DialogTitle>Add new Dish to {categoryName}</DialogTitle>
+            <DialogDescription className="hidden">
+            Fill in the form to add a new dish to the menu.
+            </DialogDescription>
           <DialogClose asChild>
             <Button
               type="button"
@@ -122,10 +172,10 @@ export const AddFoodModal = ({
               Food price
             </Label>
             <Input
-              name="price"
+              name="foodPrice"
               type="number"
               placeholder="Enter price..."
-              value={foodInfo.price}
+              value={foodInfo.foodPrice}
               onChange={handleInputChange}
             />
           </div>

@@ -28,3 +28,7 @@ userRouter.post("/reset-password", resetPassword);
 userRouter.post("/refresh", refresh )
 
 userRouter.patch("/update-user/:userId", updateUser)
+
+userRouter.get("/admin/setting", authentication, authorization([UserRole.ADMIN]),(req, res) => {
+  res.json({ message: "Welcome Admin" });
+  });

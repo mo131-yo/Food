@@ -37,6 +37,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   //   }
   // };
 
+
 const login = async (email: string, password: string) => {
   try {
     const data = await handleSignIn({ email, password });
@@ -44,7 +45,12 @@ const login = async (email: string, password: string) => {
     if (data?.accessToken) {
       localStorage.setItem("token", data.accessToken); 
       setUser(data.user);
-      push("/");
+
+    if (data.user.role === "ADMIN") {
+        push("/food-menu"); 
+      } else {
+        push("/"); 
+      }
     }
   } catch (error: any) {
     console.error("Login failed:", error);
@@ -72,6 +78,13 @@ useEffect(() => {
     try {
       const data = await getCurrentUser(token);
       setUser(data?.user);
+
+      if (data?.user?.role === "ADMIN") {
+        const path = window.location.pathname;
+        if (path === "/" || path.startsWith("/(main)")) {
+          push("/food-menu");
+        }
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -79,7 +92,7 @@ useEffect(() => {
     }
   };
   loadUser();
-}, []);
+}, [push]);
 
   return (
     <UserContext.Provider value={{ user, login, setUser, loading }}>

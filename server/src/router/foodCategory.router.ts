@@ -1,5 +1,5 @@
 import {Router} from "express";
-import { createFoodCategory, deleteCategory, getAllFoodCategory, getFoodCategoryById } from "../controller/category";
+import { createFoodCategory, deleteCategory, getAllFoodCategory, getCategoriesWithCount, getFoodCategoryById } from "../controller/category";
 import { updateCategory } from "../controller/category/update-category.controller";
 import { UserRole } from "../schema/user.schema";
 import { authentication } from "../middlewares/authentication";
@@ -16,5 +16,7 @@ foodCategoryRouter.get("/get-all-foods",  getAllFoodCategory);
 foodCategoryRouter.patch("/update-category/:categoryId", authentication, authorization([UserRole.ADMIN]),  updateCategory);
 
 foodCategoryRouter.delete("/delete-category/:categoryId",authentication , authorization([UserRole.ADMIN]), deleteCategory)
+
+foodCategoryRouter.get("/with-count", getCategoriesWithCount);
 
 //  authentication, authorization([UserRole.USER]),

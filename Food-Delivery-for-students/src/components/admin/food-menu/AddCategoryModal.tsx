@@ -55,7 +55,7 @@ export const AddCategoryModal = () => {
           </div>
         </div>
         <DialogFooter>
-          <DialogClose>
+          <DialogClose asChild>
             <Button type="button" className="mt-4" onClick={createCategoryName}>
               Add category
             </Button>
