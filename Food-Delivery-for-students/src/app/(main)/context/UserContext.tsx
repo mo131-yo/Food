@@ -28,24 +28,58 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | undefined>(undefined);
   const [loading, setLoading] = useState(true);
 
-  const login = async (email: string, password: string) => {
+  // const login = async (email: string, password: string) => {
+  //   const data = await handleSignIn({ email, password });
+  //   if (data?.token) {
+  //     localStorage.setItem("token", data.token);
+  //     setUser(data.user);
+  //     push("/");
+  //   }
+  // };
+
+const login = async (email: string, password: string) => {
+  try {
     const data = await handleSignIn({ email, password });
-    if (data?.token) {
-      localStorage.setItem("token", data.token);
+    
+    if (data?.accessToken) {
+      localStorage.setItem("token", data.accessToken); 
       setUser(data.user);
       push("/");
     }
-  };
+  } catch (error: any) {
+    console.error("Login failed:", error);
+    alert(error.message || "Нэвтрэхэд алдаа гарлаа");
+  }
+};
 
-  useEffect(() => {
-    const loadUser = async () => {
-      const token = localStorage.getItem("token");
+  // useEffect(() => {
+  //   const loadUser = async () => {
+  //     const token = localStorage.getItem("token");
+  //     const data = await getCurrentUser(token);
+  //     setUser(data?.user);
+  //     setLoading(false);
+  //   };
+  //   loadUser();
+  // }, []);
+
+useEffect(() => {
+  const loadUser = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+    try {
       const data = await getCurrentUser(token);
       setUser(data?.user);
+    } catch (error) {
+      console.error(error);
+    } finally {
       setLoading(false);
-    };
-    loadUser();
-  }, []);
+    }
+  };
+  loadUser();
+}, []);
 
   return (
     <UserContext.Provider value={{ user, login, setUser, loading }}>

@@ -12,27 +12,29 @@ import { formatMoney } from "@/lib";
 
 type FoodCardProps = {
   foodName: string;
-  price: number;
-  ingredients: string;
-  image: string;
+  foodPrice: number;
+  ingredients: string[];
+  foodImage: string;
   _id: string;
+  category: any;
 };
 
 export const FoodCard = ({
   foodName,
-  price,
+  foodPrice,
   ingredients,
-  image,
+  foodImage,
   _id,
+  category,
 }: FoodCardProps) => {
   const { addItem } = useContext(CartContext);
 
-  const food = { _id, foodName, price, ingredients, image };
+  const food = { _id, foodName, foodPrice, ingredients, foodImage, category };
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [showAlert, setShowAlert] = useState<boolean>(false);
 
-  const formattedPrice = formatMoney(price);
+  const formattedPrice = formatMoney(foodPrice);
 
   const onToggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -41,7 +43,7 @@ export const FoodCard = ({
   const handleAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
     addItem({
-      food: { _id, foodName, price, ingredients, image },
+      food: { _id, foodName, foodPrice, ingredients, foodImage, category },
       quantity: 1,
     });
     setShowAlert(true);
@@ -51,12 +53,25 @@ export const FoodCard = ({
     setShowAlert(false);
   };
 
+  const getFullImageUrl = (src: string) => {
+    if (!src) return "/cake.png";
+    if (src.startsWith("http")) return src;
+    
+    return `https://res.cloudinary.com/dzljgphud/image/upload/${src}`;
+  };
+
   return (
     <div className="w-full">
       <div onClick={onToggleModal}>
         <Card className="flex flex-col gap-5 p-4 bg-white border-none shadow-none cursor-pointer w-99 h-86 rounded-3xl">
           <div className="relative flex items-end justify-end overflow-hidden h-52 rounded-3xl">
-            <Image src={image} alt={foodName} objectFit="cover" layout="fill" />
+            {/* <Image src={foodImage} alt={foodName} objectFit="cover" layout="fill" /> */}
+            <Image 
+              src={getFullImageUrl(foodImage)} 
+              alt={foodName} 
+              objectFit="cover" 
+              layout="fill" 
+            />
             <Button
               className="absolute bg-white rounded-full w-11 h-11 bottom-5 right-5"
               onClick={handleAddToCart}

@@ -43,10 +43,13 @@ export const FoodsWithCategories = () => {
                 <div key={food?._id}>
                   <FoodCard
                     foodName={food?.foodName}
-                    price={food?.price}
-                    image={food?.image}
-                    ingredients={food?.ingredients}
+                    foodPrice={food?.foodPrice}
+                    foodImage={food?.foodImage || ""}
+                    // ingredients={food?.ingredients}
+                    // ingredients={Array.isArray(food?.ingredients) ? food.ingredients : [food?.ingredients || ""]}
+                    ingredients={Array.isArray(food?.ingredients) ? food.ingredients : []}
                     _id={food?._id}
+                    category={category}
                   />
                 </div>
               );

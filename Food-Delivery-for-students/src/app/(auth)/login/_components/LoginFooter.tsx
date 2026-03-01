@@ -16,6 +16,7 @@ export const LoginFooter = () => {
       <div className="flex items-center gap-3">
         <p className="text-muted-foreground">Don’t have an account?</p>
         <Button
+        type="submit"
           variant="link"
           className="text-[#2563EB] text-base"
           size="icon"

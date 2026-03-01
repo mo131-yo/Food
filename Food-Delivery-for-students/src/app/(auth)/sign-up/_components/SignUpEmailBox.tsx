@@ -43,7 +43,7 @@ export const SignUpEmailBox = ({
         description="Sign up to explore your favorite dishes."
       />
       <CardContent className="p-0">
-        <form onSubmit={handleNext}>
+        <form onSubmit={(e) => { e.preventDefault(); handleNext()}}>
           <div className="flex flex-col gap-6">
             <div className="grid items-center w-full gap-6">
               <FormInput {...emailInputProps} />

@@ -18,7 +18,7 @@ export const fetchCategoriesWithCount = async (): Promise<{
   error: boolean;
 }> => {
   try {
-    const response = await api.get("/foods-category/get-all-food"); 
+    const response = await api.get("/foods-category/get-all-foods"); 
     
     const categories = response.data.data.map((cat: any) => ({
       _id: cat._id,

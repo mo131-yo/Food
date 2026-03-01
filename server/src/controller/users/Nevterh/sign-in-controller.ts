@@ -19,9 +19,9 @@
             console.log(user.role);
 
             const accessToken = jwt.sign(
-                { userId: user._id, email: user.email, role: user.role},
-                process.env.JWT_SECRET as string, 
-                { expiresIn: "15m" } 
+                { userId: user._id, email: user.email, role: user.role },
+                    process.env.ACCESS_TOKEN_SECRET || process.env.JWT_SECRET || "hello", 
+                { expiresIn: "15m" }
             );
 
             const refreshToken = jwt.sign(

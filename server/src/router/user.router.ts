@@ -6,10 +6,12 @@ import { verifyEmail } from "../controller/users/verify-email.controller";
 import { getAllUsers } from "../controller/users/all-user.controller";
 import { resetPassword } from "../controller/users/reset-Password.controller";
 import { resetPasswordRequest } from "../controller/users/reset-password-request.controller";
+import { authentication, authorization } from "../middlewares";
+import { UserRole } from "../schema/user.schema";
 
 export const userRouter = Router();
 
-userRouter.get("/get-user-by-id-get-request/:userId", getUserByIdAndGet);
+userRouter.get("/get-user-by-id-get-request/:userId",authentication, authorization([UserRole.ADMIN]),  getUserByIdAndGet);
 
 userRouter.get("/all-users", getAllUsers)
 

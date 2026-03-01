@@ -13,6 +13,7 @@ import {
 } from "../ui/dialog";
 import { useContext, useState } from "react";
 import { CartContext } from "@/app/(main)/context";
+import { formatMoney } from "@/lib";
 
 type FoodDetailModalProps = {
   food: Food;
@@ -27,11 +28,17 @@ export const FoodDetailModal = ({
 }: FoodDetailModalProps) => {
   const { addItem } = useContext(CartContext);
   const [quantity, setQuantity] = useState<number>(1);
-  const { foodName, image, ingredients, price } = food;
+  const { foodName, foodImage, ingredients, foodPrice } = food;
 
   const addQuantity = () => {
     setQuantity((prev) => prev + 1);
   };
+
+  const totalPrice = (foodPrice || 0) * quantity;
+
+  const displayIngredients = Array.isArray(ingredients) 
+    ? ingredients.join(", ") 
+    : ingredients;
 
   const subtractQuantity = () => {
     setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
@@ -48,14 +55,20 @@ export const FoodDetailModal = ({
       <DialogContent className="bg-white flex flex-col max-w-[826px] max-h-[412px] sm:rounded-3xl">
         <div className="flex w-full h-full gap-6 rounded-3xl">
           <div className="w-1/2 overflow-hidden rounded-xl">
-            <Image
-              src={image}
+            {/* <Image
+              src={foodImage ?? "/placeholder-food.png"}
               alt={foodName}
               objectFit="cover"
               layout="responsive"
               width={377}
               height={364}
               className="rounded-xl"
+            />   */}
+            <Image 
+              src={foodImage || "/cake.png"}
+              alt={foodName || "food image"} 
+              objectFit="cover" 
+              layout="fill" 
             />
           </div>
           <div className="flex flex-col w-1/2 ">
@@ -74,7 +87,7 @@ export const FoodDetailModal = ({
                   {foodName}
                 </DialogTitle>
                 <DialogDescription className="text-base font-normal text-[#09090B]">
-                  {ingredients}
+                  {displayIngredients}
                 </DialogDescription>
               </DialogHeader>
               <div className="flex items-center justify-between mb-6">
@@ -83,7 +96,8 @@ export const FoodDetailModal = ({
                     Total price:
                   </p>
                   <div className="text-lg font-semibold text-[#09090B]">
-                    <p>${price}</p>
+                    {/* <p>${foodPrice}</p> */}
+                    <p>{formatMoney(totalPrice)} ₮</p>
                   </div>
                 </div>
                 <div className="flex w-[121px] justify-around">

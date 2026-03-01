@@ -1,15 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import { determineValidationSchema, handleSignUp } from "@/lib";
+import { determineValidationSchema, handleLastSignUp, handleSignUp } from "@/lib";
 import { SignUpEmailBox } from "./SignUpEmailBox";
 import { SignUpPasswordBox } from "./SignUpPasswordBox";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const Signup = () => {
   const { push } = useRouter();
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
+  
   const [currentStep, setCurrentStep] = useState<number>(0);
+
+  useEffect(() => {
+    if (token) {
+      setCurrentStep(1);
+    }
+  }, [token]);
 
   const formik = useFormik({
     initialValues: {
@@ -18,19 +27,56 @@ export const Signup = () => {
       passwordConfirmation: "",
     },
     validationSchema: determineValidationSchema(currentStep),
-    onSubmit: async (values) => {
-      const data = await handleSignUp(values);
+    // onSubmit: async (values) => {
+    //   const data = await handleSignUp(values);
 
-      if (data?.accessToken) {
-        localStorage.setItem("token", data.accessToken);
-        push("/");
-      }
-    },
+    //   if (data?.accessToken) {
+    //     localStorage.setItem("token", data.accessToken);
+    //     push("/");
+    //   }
+    // },
+  onSubmit: async (values) => {
+  if (!token) {
+    alert("Мэйлээр ирсэн баталгаажуулах линкээр орж ирнэ үү!");
+    return;
+  }
+
+  try {
+    const data = await handleLastSignUp({ 
+      token: token, 
+      password: values.password 
+    });
+
+    if (data) {
+      alert("Бүртгэл амжилттай!");
+      push("/login");
+    }
+  } catch (err: any) {
+    alert(err.message || "Алдаа гарлаа");
+  }
+},
   });
 
-  const handleNext = () => {
-    setCurrentStep((previous) => previous + 1);
-  };
+  // const handleNext = () => {
+  //   setCurrentStep((previous) => previous + 1);
+  // };
+
+const handleNext = async () => {
+  if (currentStep === 0) {
+    const errors = await formik.validateForm();
+    
+    if (!errors.email && formik.values.email) {
+      try {
+        await handleSignUp({ email: formik.values.email });
+        alert("Баталгаажуулах мэйл илгээлээ. Мэйлээ шалгаад линкээр орж ирнэ үү.");
+      } catch (error: any) {
+        alert(error.message || "Мэйл илгээхэд алдаа гарлаа");
+      }
+    } else {
+      formik.setFieldTouched("email", true);
+    }
+  }
+};
 
   const handlePrevious = () => {
     setCurrentStep((previous) => previous - 1);

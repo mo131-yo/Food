@@ -42,7 +42,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const total = cartData.reduce(
-      (sum, item) => sum + item.food.price * item.quantity,
+      (sum, item) => sum + item.food.foodPrice * item.quantity,
       0
     );
     setTotalPrice(total.toFixed(2));

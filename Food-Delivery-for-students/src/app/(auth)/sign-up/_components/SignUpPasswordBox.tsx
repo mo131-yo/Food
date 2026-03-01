@@ -78,7 +78,8 @@ export const SignUpPasswordBox = ({
       />
 
       <CardContent className="p-0">
-        <form onSubmit={handleCreateAccount} className="flex flex-col gap-6">
+        <form 
+  onSubmit={(e) => { e.preventDefault(); handleCreateAccount()}} className="flex flex-col gap-6">
           <div className="grid items-center w-full gap-6">
             <div className="flex flex-col space-y-1.5 gap-4">
               <FormInput {...passwordInputProps} />

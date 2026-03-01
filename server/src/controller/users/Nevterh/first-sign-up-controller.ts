@@ -23,11 +23,16 @@ export const firstSignUp = async (req: Request, res: Response) => {
         
         const baseUrl = process.env.BACKEND_API || "http://localhost:8000";
         
-        const publicUrl= frontendUrl || baseUrl
+        // const publicUrl= frontendUrl || baseUrl
 
-        const verificationLink = `${publicUrl}/verify-email?token=${token}`;
+        // const verificationLink = `${publicUrl}/verify-email?token=${token}`;
+        const publicUrl = frontendUrl || baseUrl
         
+        // const verificationLink = `${publicUrl}/verify-email?token=${token}`
+        const verificationLink = `${frontendUrl}/sign-up?token=${token}`;
+
         await verifyUserEmail(email, verificationLink);
+        
         res.status(200).json({
             message: "Batalgaajuulah mail yvuulsan. Mail ee shalgaad nuuts ugee tohiruulna uu", token
         });

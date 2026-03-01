@@ -72,7 +72,8 @@ export const Login = () => {
           <div className="grid items-start w-full gap-4">
             <FormInput {...emailInputProps} />
             <FormInput {...passwordInputProps} />
-            <Button
+            <Button 
+            type="button"
               variant="link"
               className="p-0 underline w-fit"
               onClick={navigateToForgotPassword}

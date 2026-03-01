@@ -17,6 +17,8 @@ enum UserRole {
     ttl?: Date;
     verificationToken?: string;
     refreshToken: string,
+    resetPasswordOtp?: string; 
+    resetPasswordExpires?: Date;
     // orderedFoods: mongoose.Types.ObjectId[];
     };
 
@@ -33,6 +35,8 @@ enum UserRole {
     phoneNumber: {type: String},
     address: {type: String, required: true},
     refreshToken: { type:String },
+    resetPasswordOtp: { type: String },
+    resetPasswordExpires: { type: Date },
     // orderedFoods: { type: Schema.Types.ObjectId[] },
    },
    {timestamps: true},

@@ -5,7 +5,13 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**",
+        // hostname: "**",
+        hostname: 'res.cloudinary.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.pinimg.com',
+        pathname: "/**",
       },
     ],
   },
@@ -19,5 +25,4 @@ const nextConfig: NextConfig = {
     ];
   },
 };
-
 export default nextConfig;

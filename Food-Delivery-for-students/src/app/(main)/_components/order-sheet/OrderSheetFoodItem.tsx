@@ -16,6 +16,12 @@ export const OrderSheetFoodItem = ({
 }) => {
   const { addQuantity, subtractQuantity, removeItem } = useContext(CartContext);
 
+  const imageUrl = food?.foodImage?.startsWith("http")
+    ? food.foodImage
+    : food?.foodImage 
+      ? `https://res.cloudinary.com/dzljgphud/image/upload/${food.foodImage}`
+      : "/cake.png";
+
   const handleAddQuantity = () => {
     addQuantity(food._id);
   };
@@ -27,7 +33,7 @@ export const OrderSheetFoodItem = ({
   const handleRemoveItem = () => {
     removeItem(food._id);
   };
-  const formattedPrice = formatMoney(food?.price * quantity);
+  const formattedPrice = formatMoney(food?.foodPrice * quantity);
 
   return (
     <>
@@ -35,7 +41,7 @@ export const OrderSheetFoodItem = ({
         <div className="w-[124px] h-[120px] relative rounded-lg overflow-hidden">
           <Image
             className="fill"
-            src={food?.image}
+            src={imageUrl}
             objectFit="cover"
             layout="fill"
             alt={food?.foodName}

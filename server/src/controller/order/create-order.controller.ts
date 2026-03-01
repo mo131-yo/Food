@@ -21,8 +21,8 @@ export const createOrder = async (req: any, res: Response) => {
                 };
             })
         );
-        const totalPrice = foodCalculations.reduce((sum, item) => {
-            return sum + (item.price * item.quantity);
+       const totalPrice = foodCalculations.reduce((sum, item) => {
+        return sum + (Number(item.price || 0) * item.quantity);
         }, 0);
 
         const newOrder = await OrderModel.create({

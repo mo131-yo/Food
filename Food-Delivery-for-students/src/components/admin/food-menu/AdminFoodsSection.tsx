@@ -11,6 +11,8 @@ export type FoodCategory = {
   categoryName: string;
   count: number;
   foods: {
+    foodPrice: number;
+    foodImage: string;
     _id: string;
     foodName: string;
     price: number;

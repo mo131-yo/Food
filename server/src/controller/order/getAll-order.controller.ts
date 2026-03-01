@@ -5,7 +5,10 @@ export const getAllOrder = async (req: Request, res: Response) => {
     try {
         const order = await OrderModel.find()
             .populate("user")
-            .populate("foods");
+            .populate({
+                path: "foods.foodId",
+                model: "Food"
+            });
 
         res.status(200).json({
             message: "Buh zahialguud",
