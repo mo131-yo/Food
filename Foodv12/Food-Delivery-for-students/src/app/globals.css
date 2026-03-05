@@ -79,3 +79,77 @@ body {
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='20' ry='20' stroke='red' stroke-width='1' stroke-dasharray='12%2c 12' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
   border-radius: 20px;
 }
+
+
+.pan-loader {
+  width: 180px;
+  height: 180px;
+  position: relative;
+}
+
+.pan-loader .loader-inside {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  z-index: -1;
+  width: 60%;
+  height: 45%;
+  border: 10px solid transparent;
+  border-bottom: 10px solid #ff2f2f;
+  border-radius: 50%;
+  animation: loader-anim 2s infinite linear;
+}
+
+.pan-container {
+  display: flex;
+  width: 100%;
+  animation: pan-anim 2s infinite;
+}
+
+.pan {
+  width: 60%;
+  height: 20px;
+  background: linear-gradient(#000, #333);
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.handle {
+  width: 40%;
+  height: 10px;
+  background: linear-gradient(#000, #333);
+  border-radius: 10px;
+}
+
+.pan-shadow {
+  position: absolute;
+  top: 60%;
+  left: 15%;
+  width: 30%;
+  height: 8px;
+  background: rgba(211, 211, 211, 0.4);
+  border-radius: 20px;
+  animation: shadow-anim 2s infinite;
+}
+
+@keyframes loader-anim {
+  0% { width: 10%; transform: rotate(0deg); }
+  10% { left: 0%; transform: rotate(0deg); }
+  20% { width: 0%; left: 20%; }
+  30% { width: 25%; }
+  50% { left: 15%; width: 35%; }
+  70% { width: 30%; left: 18%; transform: rotate(240deg); }
+  90% { width: 30%; left: 10%; }
+  100% { width: 2%; left: 25%; transform: rotate(360deg); }
+}
+
+@keyframes pan-anim {
+  0%, 100% { transform: rotate(0deg); transform-origin: top right; }
+  10% { transform: rotate(-2deg); transform-origin: top right; }
+  50% { transform: rotate(15deg); }
+}
+
+@keyframes shadow-anim {
+  0%, 100% { width: 30%; }
+  50% { width: 40%; left: 20px; }
+}

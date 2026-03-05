@@ -9,23 +9,51 @@ export const FoodCategories = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
 
-  useEffect(() => {
+  const [loadingText, setLoadingText] = useState("Server asaj bn tur huleene uu...");
+
+   useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadingText("Uuchlaarai, server udaj baival zoohon huleej baigaad Refresh hiij uzeerei");
+    }, 4000);
+
     const fetchData = async () => {
-      const { data, error } = await fetchCategories();
-      if (error) return;
-
-      setCategories(data);
-
-      setLoading(false);
+      try {
+        const { data, error } = await fetchCategories();
+        if (!error && data) {
+          setCategories(data);
+        }
+      } catch (err) {
+        console.error("Aldaa garlaa", err);
+      } finally {
+        setLoading(false);
+        clearTimeout(timer);
+      }
     };
 
     fetchData();
+
+    return () => clearTimeout(timer);
   }, []);
 
-  if (loading) return <p className="text-white">Loading...</p>;
+
+    if (loading) return (
+      <div className="flex flex-col items-center justify-center min-h-[400px]">
+        <div className="pan-loader">
+          <div className="loader-inside"></div>
+          <div className="pan-container">
+            <div className="pan"></div>
+            <div className="handle"></div>
+          </div>
+          <div className="pan-shadow"></div>
+        </div>
+       <p className="mt-4 text-white font-medium animate-pulse">
+        {loadingText}
+      </p>
+      </div>
+    );
 
   if (!categories.length)
-    return <p className="text-white">No categories found</p>;
+    return <p className="text-white">No categories found</p>  
 
     return (
       <div>
