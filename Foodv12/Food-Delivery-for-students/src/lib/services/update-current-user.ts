@@ -15,7 +15,6 @@ export const updateCurrentUser = async (userData: { address: string }) => {
     });
     return response.data;
   } catch (error: any) {
-    // Алдааг илүү дэлгэрэнгүй харах (Status code-ыг харах нь чухал)
     console.error("Full Error Response:", error.response);
     
     const errorMessage = error.response?.data?.message || "Хүсэлт амжилтгүй боллоо";

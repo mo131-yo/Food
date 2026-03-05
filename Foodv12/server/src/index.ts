@@ -14,7 +14,7 @@ const app: Application = express();
 app.use(express.json());
 
 const allowedOrigins = [
-  "https://food-eight-theta.vercel.app/", 
+  "https://food-eight-theta.vercel.app", 
   "http://localhost:3000",   
   "http://localhost:8000"  
 ];
