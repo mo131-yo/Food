@@ -9,12 +9,12 @@ export const OrderSheetCart = () => {
   const { cartData } = useContext(CartContext);
 
   return (
-    <Card className="h-fit max-h-[500px] overflow-hidden pb-4">
-      <CardHeader className="p-4">
+    <Card className="h-[500px] flex flex-col pb-4"> 
+      <CardHeader className="p-4 flex-shrink-0">
         <CardTitle>My cart</CardTitle>
       </CardHeader>
 
-      <CardContent className="p-4 overflow-y-auto">
+      <CardContent className="p-4 overflow-y-auto flex-1 custom-scrollbar">
         {cartData?.length ? (
           <div className="flex flex-col gap-4">
             {cartData.map((item) => (
