@@ -62,35 +62,47 @@ export const columns: ColumnDef<AllFoodOrders>[] = [
       </div>
     ),
   },
-  {
-    accessorKey: "createdAt",
-    header: ({ column }) => {
-      return (
-        <Button
-          className="flex justify-between w-full -mx-4"
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          <h1>Date</h1>
-          <ChevronsUpDown className="w-4 h-4 ml-2" />
-        </Button>
-      );
-    },
-    size: 160,
-    filterFn: (row, columnId, filterValue) => {
-      if (!filterValue?.from || !filterValue?.to) return true;
-      const rowDate = new Date(row.getValue(columnId));
-      return (
-        rowDate >= new Date(filterValue.from) &&
-        rowDate <= new Date(filterValue.to)
-      );
-    },
-    cell: ({ row }) => (
-      <h1 className="flex items-center w-40 p-4 h-7">
-        {format(row.original.createdAt, "yyyy/MM/dd")}
-      </h1>
-    ),
+
+{
+  accessorKey: "createdAt",
+  header: ({ column }) => {
+    return (
+      <Button
+        className="flex justify-between w-full -mx-4"
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        <h1>Date</h1>
+        <ChevronsUpDown className="w-4 h-4 ml-2" />
+      </Button>
+    );
   },
+  size: 160,
+  filterFn: (row, columnId, filterValue) => {
+    if (!filterValue || !filterValue.from) return true;
+
+    const rowDate = new Date(row.original.createdAt);
+    const start = new Date(filterValue.from);
+    const end = filterValue.to ? new Date(filterValue.to) : null;
+
+    if (start && !end) {
+      return rowDate >= start;
+    }
+
+    if (start && end) {
+      end.setHours(23, 59, 59, 999); 
+      return rowDate >= start && rowDate <= end;
+    }
+
+    return true;
+  },
+  cell: ({ row }) => (
+    <h1 className="flex items-center w-40 p-4 h-7">
+      {format(new Date(row.original.createdAt), "yyyy/MM/dd")}
+    </h1>
+  ),
+},
+
   {
     accessorKey: "total",
     header: "Total",
@@ -99,10 +111,10 @@ export const columns: ColumnDef<AllFoodOrders>[] = [
       <h1 className="flex items-center w-40 p-4 h-7">{`$${row.original.totalPrice}`}</h1>
     ),
   },
-
-  {
-  accessorFn: (row) => row.user?.address || row.original.address || "Address bhq esvel todorhoigui",
+{
+  accessorFn: (row) => row?.user?.address || row?.address || "No address",
   size: 235,
+  id: "deliveryAddress",
   header: "Delivery Address",
   cell: ({ row }) => (
     <div className="max-w-[435px] text-xs leading-4">
