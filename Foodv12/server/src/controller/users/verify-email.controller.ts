@@ -17,14 +17,14 @@ export const verifyEmail = async (req: Request, res: Response) => {
       { isVerified: true }
     );
 
-    const frontendBaseUrl = process.env.FRONTEND_URL || "http://localhost:3000";
+    const frontendBaseUrl = process.env.FRONTEND_URL || process.env.VERCEL_URL;
     
     return res.redirect(`${frontendBaseUrl}/login?verified=true`);
 
   } catch (error: any) {
     console.error("Verification Error:", error.message);
     
-    const frontendBaseUrl = process.env.FRONTEND_URL || "http://localhost:3000";
+    const frontendBaseUrl = process.env.FRONTEND_URL || process.env.VERCEL_URL;
     return res.redirect(`${frontendBaseUrl}/verification-error`);
   }
 };
