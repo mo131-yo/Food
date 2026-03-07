@@ -8,15 +8,14 @@ import { OrderAddress } from "./OrderAddress";
 export const OrderSheetCart = () => {
   const { cartData } = useContext(CartContext);
 
-  return (
-    <Card className="h-[500px] flex flex-col pb-4"> 
+ return (
+    <Card className="h-[600px] flex flex-col border-none shadow-none bg-white overflow-hidden"> 
       <CardHeader className="p-4 flex-shrink-0">
-        <CardTitle>My cart</CardTitle>
+        <CardTitle className="text-white">My cart</CardTitle>
       </CardHeader>
-
-      <CardContent className="p-4 overflow-y-auto flex-1 custom-scrollbar">
+      <CardContent className="p-4 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar">
         {cartData?.length ? (
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full">
             {cartData.map((item) => (
               <OrderSheetFoodItem
                 key={item.food._id}

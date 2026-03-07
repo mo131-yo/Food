@@ -18,17 +18,23 @@ export const OrderSheet = ({
   closeSidebar,
   openModal,
 }: OrderSheetProps) => {
-  return (
+ return (
     <Sheet open={open} onOpenChange={closeSidebar}>
-      <SheetContent className="sm:max-w-[535px] rounded-s-lg border-none bg-[#404040]">
-        <SheetHeader>
-          <SheetTitle className="flex items-center gap-3 text-white">
-            <ShoppingCart size={24} />
-            Order detail
-          </SheetTitle>
-        </SheetHeader>
+      <SheetContent className="sm:max-w-[535px] rounded-s-lg border-none bg-[#404040] flex flex-col h-full p-0">
+        
+        <div className="p-6 pb-2">
+          <SheetHeader>
+            <SheetTitle className="flex items-center gap-3 text-white">
+              <ShoppingCart size={24} />
+              Order detail
+            </SheetTitle>
+          </SheetHeader>
+        </div>
 
-        <OrderSheetContents openModal={openModal} />
+        <div className="flex-1 overflow-y-auto px-6 custom-scrollbar">
+          <OrderSheetContents openModal={openModal} />
+        </div>
+
       </SheetContent>
     </Sheet>
   );

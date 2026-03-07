@@ -52,18 +52,31 @@ export const columns: ColumnDef<AllFoodOrders>[] = [
     </h1>
   ),
 },
-  {
-    accessorFn: (row) => row.foodOrderItems,
-    accessorKey: "foodOrderItems",
-    size: 160,
-    header: "Food",
-    cell: ({ row }) => (
-      <div className="flex items-center h-full px-4">
-        <FoodDetailPopover foodOrderItems={row.original.foodOrderItems} />
-      </div>
-    ),
-  },
+  // {
+  //   accessorFn: (row) => row.foodOrderItems,
+  //   size: 160,
+  //   header: "Food",
+  //   cell: ({ row }) => (
+  //     <div className="flex items-center h-full px-4">
+  //       <FoodDetailPopover foodOrderItems={row.original.foodOrderItems} />
+  //     </div>
+  //   ),
+  // },
 
+  {
+  accessorFn: (row) => row.foodOrderItems,
+  size: 160,
+  header: "Food",
+  cell: ({ row }) => {
+    // foodOrderItems нь массив мөн эсэхийг шалгана
+    const items = row.original.foodOrderItems || [];
+    return (
+      <div className="flex items-center h-full px-4">
+        <FoodDetailPopover foodOrderItems={items} />
+      </div>
+    );
+  },
+},
 {
   accessorKey: "createdAt",
   header: ({ column }) => {
