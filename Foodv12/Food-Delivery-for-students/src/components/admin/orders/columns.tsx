@@ -54,6 +54,7 @@ export const columns: ColumnDef<AllFoodOrders>[] = [
 },
   {
     accessorFn: (row) => row.foodOrderItems,
+    accessorKey: "foodOrderItems",
     size: 160,
     header: "Food",
     cell: ({ row }) => (

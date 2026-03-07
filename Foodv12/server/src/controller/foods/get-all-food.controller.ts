@@ -3,7 +3,6 @@ import { FoodModel } from "../../models";
 
 export const getAllFood = async (req: Request, res: Response) => {
     try {
-        // const food = await FoodModel.find().populate("category");
         const food = await FoodModel.find().populate("category");
         console.log("Populated Food:", JSON.stringify(food, null, 2));
         

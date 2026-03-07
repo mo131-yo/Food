@@ -28,7 +28,8 @@ type DataTableProps<TData, TValue> = {
   setFoodOrders: Dispatch<SetStateAction<AllFoodOrders[] | undefined>>;
 };
 
-export function DataTable<TData extends { _id: string }, TValue>({
+export function 
+DataTable<TData extends { _id: string }, TValue>({
   columns,
   data,
   setFoodOrders,
